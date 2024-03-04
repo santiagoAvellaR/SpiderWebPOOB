@@ -1,0 +1,584 @@
+BlueJ run started: Sat Feb 17 17:03:29 COT 2024
+BlueJ version 5.2.1
+Java version 17.0.4.1
+JavaFX version 20.0.1+2
+Virtual machine: OpenJDK 64-Bit Server VM 17.0.4.1+1 (Eclipse Adoptium)
+Running on: Windows 10 10.0 (amd64)
+Java Home: C:\Users\Asus\Downloads\bluej\jdk
+----
+Detected language "spanish" based on iso639-2 code "spa"
+Internal error: Unable to load frame labels file: C:\Users\Asus\Downloads\bluej\lib\spanish\frame-labels
+Opening project: C:\Users\Asus\Downloads\daniel Poob\shapes\shapes
+1708207414108: Listening for JDWP connection on address: javadebug
+Connected to debug VM via dt_shmem transport...
+Communication with debug VM fully established.
+java.io.FileNotFoundException while reading import cache: userhome\bluej\import-cache.xml (El sistema no puede encontrar el archivo especificado)
+====
+
+====
+BlueJ run started: Sat Feb 17 23:32:29 COT 2024
+BlueJ version 5.2.1
+Java version 17.0.4.1
+JavaFX version 20.0.1+2
+Virtual machine: OpenJDK 64-Bit Server VM 17.0.4.1+1 (Eclipse Adoptium)
+Running on: Windows 10 10.0 (amd64)
+Java Home: C:\Users\Asus\Downloads\bluej\jdk
+----
+Internal error: Unable to load frame labels file: C:\Users\Asus\Downloads\bluej\lib\spanish\frame-labels
+Opening project: C:\Users\Asus\Downloads\daniel Poob\shapes\shapes
+1708230750138: Listening for JDWP connection on address: javadebug
+Connected to debug VM via dt_shmem transport...
+Communication with debug VM fully established.
+java.io.FileNotFoundException while reading import cache: userhome\bluej\import-cache.xml (El sistema no puede encontrar el archivo especificado)
+====
+
+====
+BlueJ run started: Sat Feb 17 23:55:46 COT 2024
+BlueJ version 5.2.1
+Java version 17.0.4.1
+JavaFX version 20.0.1+2
+Virtual machine: OpenJDK 64-Bit Server VM 17.0.4.1+1 (Eclipse Adoptium)
+Running on: Windows 10 10.0 (amd64)
+Java Home: C:\Users\Asus\Downloads\bluej\jdk
+----
+Internal error: Unable to load frame labels file: C:\Users\Asus\Downloads\bluej\lib\spanish\frame-labels
+Opening project: C:\Users\Asus\Downloads\daniel Poob\shapes\shapes
+1708232146743: Listening for JDWP connection on address: javadebug
+Connected to debug VM via dt_shmem transport...
+Communication with debug VM fully established.
+====
+
+====
+BlueJ run started: Sun Feb 18 09:30:32 COT 2024
+BlueJ version 5.2.1
+Java version 17.0.4.1
+JavaFX version 20.0.1+2
+Virtual machine: OpenJDK 64-Bit Server VM 17.0.4.1+1 (Eclipse Adoptium)
+Running on: Windows 10 10.0 (amd64)
+Java Home: C:\Users\Asus\Downloads\bluej\jdk
+----
+Internal error: Unable to load frame labels file: C:\Users\Asus\Downloads\bluej\lib\spanish\frame-labels
+Opening project: C:\Users\Asus\Downloads\daniel Poob\shapes\shapes
+1708266635399: Listening for JDWP connection on address: javadebug
+Connected to debug VM via dt_shmem transport...
+Communication with debug VM fully established.
+Error or exception for source not in project: C:\Users\Asus\Downloads\daniel Poob\shapes\shapes\Preconditions.java, line 64: java.lang.IndexOutOfBoundsException:
+Index 0 out of bounds for length 0
+Error or exception for source not in project: C:\Users\Asus\Downloads\daniel Poob\shapes\shapes\Preconditions.java, line 70: java.lang.IndexOutOfBoundsException:
+Index 0 out of bounds for length 0 (in jdk.internal.util.Preconditions)
+Error or exception for source not in project: C:\Users\Asus\Downloads\daniel Poob\shapes\shapes\Preconditions.java, line 266: java.lang.IndexOutOfBoundsException:
+Index 0 out of bounds for length 0 (in jdk.internal.util.Preconditions)
+Error or exception for source not in project: C:\Users\Asus\Downloads\daniel Poob\shapes\shapes\Objects.java, line 359: java.lang.IndexOutOfBoundsException:
+Index 0 out of bounds for length 0 (in jdk.internal.util.Preconditions)
+Error or exception for source not in project: C:\Users\Asus\Downloads\daniel Poob\shapes\shapes\ArrayList.java, line 427: java.lang.IndexOutOfBoundsException:
+Index 0 out of bounds for length 0 (in jdk.internal.util.Preconditions)
+java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:283)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:309)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:350)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:803)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:966)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:478)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(SSLSocketInputRecord.java:472)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.bytesInCompletePacket(SSLSocketInputRecord.java:70)
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1460)
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1064)
+	at org.apache.http.impl.io.AbstractSessionInputBuffer.fillBuffer(AbstractSessionInputBuffer.java:160)
+	at org.apache.http.impl.io.SocketInputBuffer.fillBuffer(SocketInputBuffer.java:84)
+	at org.apache.http.impl.io.AbstractSessionInputBuffer.readLine(AbstractSessionInputBuffer.java:273)
+	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:140)
+	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:57)
+	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:260)
+	at org.apache.http.impl.AbstractHttpClientConnection.receiveResponseHeader(AbstractHttpClientConnection.java:283)
+	at org.apache.http.impl.conn.DefaultClientConnection.receiveResponseHeader(DefaultClientConnection.java:251)
+	at org.apache.http.impl.conn.ManagedClientConnectionImpl.receiveResponseHeader(ManagedClientConnectionImpl.java:197)
+	at org.apache.http.protocol.HttpRequestExecutor.doReceiveResponse(HttpRequestExecutor.java:271)
+	at org.apache.http.protocol.HttpRequestExecutor.execute(HttpRequestExecutor.java:123)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryExecute(DefaultRequestDirector.java:685)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:487)
+	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:863)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:106)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:57)
+	at bluej.collect.DataSubmitter.postData(DataSubmitter.java:177)
+	at bluej.collect.DataSubmitter.processQueue(DataSubmitter.java:133)
+	at bluej.collect.DataSubmitter$1.run(DataSubmitter.java:105)
+Giving up on line #121
+Error or exception for source not in project: C:\Users\Asus\Downloads\daniel Poob\shapes\shapes\Preconditions.java, line 64: java.lang.IndexOutOfBoundsException:
+Index -1 out of bounds for length 7
+Error or exception for source not in project: C:\Users\Asus\Downloads\daniel Poob\shapes\shapes\Preconditions.java, line 70: java.lang.IndexOutOfBoundsException:
+Index -1 out of bounds for length 7 (in jdk.internal.util.Preconditions)
+Error or exception for source not in project: C:\Users\Asus\Downloads\daniel Poob\shapes\shapes\Preconditions.java, line 266: java.lang.IndexOutOfBoundsException:
+Index -1 out of bounds for length 7 (in jdk.internal.util.Preconditions)
+Error or exception for source not in project: C:\Users\Asus\Downloads\daniel Poob\shapes\shapes\Objects.java, line 359: java.lang.IndexOutOfBoundsException:
+Index -1 out of bounds for length 7 (in jdk.internal.util.Preconditions)
+Error or exception for source not in project: C:\Users\Asus\Downloads\daniel Poob\shapes\shapes\ArrayList.java, line 427: java.lang.IndexOutOfBoundsException:
+Index -1 out of bounds for length 7 (in jdk.internal.util.Preconditions)
+Giving up on line #193
+Giving up on line #193
+====
+
+====
+BlueJ run started: Mon Feb 19 18:32:09 COT 2024
+BlueJ version 5.2.1
+Java version 17.0.4.1
+JavaFX version 20.0.1+2
+Virtual machine: OpenJDK 64-Bit Server VM 17.0.4.1+1 (Eclipse Adoptium)
+Running on: Windows 10 10.0 (amd64)
+Java Home: C:\Users\Asus\Downloads\bluej\jdk
+----
+Internal error: Unable to load frame labels file: C:\Users\Asus\Downloads\bluej\lib\spanish\frame-labels
+Opening project: C:\Users\Asus\Downloads\proyecto\proyecto
+1708385531076: Listening for JDWP connection on address: javadebug
+Connected to debug VM via dt_shmem transport...
+Communication with debug VM fully established.
+Giving up on line #192
+Giving up on line #198
+Giving up on line #199
+Giving up on line #205
+Giving up on line #206
+Giving up on line #208
+Giving up on line #209
+Giving up on line #210
+Giving up on line #211
+Giving up on line #207
+Giving up on line #212
+Giving up on line #213
+Giving up on line #214
+Giving up on line #62
+====
+
+====
+BlueJ run started: Mon Feb 19 20:39:18 COT 2024
+BlueJ version 5.2.1
+Java version 17.0.4.1
+JavaFX version 20.0.1+2
+Virtual machine: OpenJDK 64-Bit Server VM 17.0.4.1+1 (Eclipse Adoptium)
+Running on: Windows 10 10.0 (amd64)
+Java Home: C:\Users\Asus\Downloads\bluej\jdk
+----
+Internal error: Unable to load frame labels file: C:\Users\Asus\Downloads\bluej\lib\spanish\frame-labels
+Opening project: C:\Users\Asus\Downloads\proyecto\proyecto
+1708393159070: Listening for JDWP connection on address: javadebug
+Connected to debug VM via dt_shmem transport...
+Communication with debug VM fully established.
+java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:283)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:309)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:350)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:803)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:966)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:478)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(SSLSocketInputRecord.java:472)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.bytesInCompletePacket(SSLSocketInputRecord.java:70)
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1460)
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1064)
+	at org.apache.http.impl.io.AbstractSessionInputBuffer.fillBuffer(AbstractSessionInputBuffer.java:160)
+	at org.apache.http.impl.io.SocketInputBuffer.fillBuffer(SocketInputBuffer.java:84)
+	at org.apache.http.impl.io.AbstractSessionInputBuffer.readLine(AbstractSessionInputBuffer.java:273)
+	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:140)
+	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:57)
+	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:260)
+	at org.apache.http.impl.AbstractHttpClientConnection.receiveResponseHeader(AbstractHttpClientConnection.java:283)
+	at org.apache.http.impl.conn.DefaultClientConnection.receiveResponseHeader(DefaultClientConnection.java:251)
+	at org.apache.http.impl.conn.ManagedClientConnectionImpl.receiveResponseHeader(ManagedClientConnectionImpl.java:197)
+	at org.apache.http.protocol.HttpRequestExecutor.doReceiveResponse(HttpRequestExecutor.java:271)
+	at org.apache.http.protocol.HttpRequestExecutor.execute(HttpRequestExecutor.java:123)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryExecute(DefaultRequestDirector.java:685)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:487)
+	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:863)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:106)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:57)
+	at bluej.collect.DataSubmitter.postData(DataSubmitter.java:177)
+	at bluej.collect.DataSubmitter.processQueue(DataSubmitter.java:133)
+	at bluej.collect.DataSubmitter$1.run(DataSubmitter.java:105)
+An unexpected exception occurred:
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at bluej.terminal.Terminal$TerminalWriter.write(Terminal.java:924)
+	at bluej.debugger.jdi.VMReference$IOHandlerThread.run(VMReference.java:2209)
+====
+
+====
+BlueJ run started: Mon Feb 19 21:06:30 COT 2024
+BlueJ version 5.2.1
+Java version 17.0.4.1
+JavaFX version 20.0.1+2
+Virtual machine: OpenJDK 64-Bit Server VM 17.0.4.1+1 (Eclipse Adoptium)
+Running on: Windows 10 10.0 (amd64)
+Java Home: C:\Users\Asus\Downloads\bluej\jdk
+----
+Internal error: Unable to load frame labels file: C:\Users\Asus\Downloads\bluej\lib\spanish\frame-labels
+Opening project: C:\Users\Asus\Downloads\proyecto\proyecto
+1708394791205: Listening for JDWP connection on address: javadebug
+Connected to debug VM via dt_shmem transport...
+Communication with debug VM fully established.
+Giving up on line #197
+Giving up on line #198
+Giving up on line #199
+Giving up on line #200
+Giving up on line #201
+Giving up on line #202
+Giving up on line #203
+Giving up on line #204
+Giving up on line #205
+Giving up on line #206
+An unexpected exception occurred:
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at bluej.terminal.Terminal$TerminalWriter.write(Terminal.java:924)
+	at bluej.debugger.jdi.VMReference$IOHandlerThread.run(VMReference.java:2209)
+1708397924424: Listening for JDWP connection on address: javadebug
+Connected to debug VM via dt_shmem transport...
+Communication with debug VM fully established.
+====
+
+====
+BlueJ run started: Wed Feb 21 20:21:52 COT 2024
+BlueJ version 5.2.1
+Java version 17.0.4.1
+JavaFX version 20.0.1+2
+Virtual machine: OpenJDK 64-Bit Server VM 17.0.4.1+1 (Eclipse Adoptium)
+Running on: Windows 10 10.0 (amd64)
+Java Home: C:\Users\Asus\Downloads\bluej\jdk
+----
+Internal error: Unable to load frame labels file: C:\Users\Asus\Downloads\bluej\lib\spanish\frame-labels
+Opening project: C:\Users\Asus\Downloads\proyecto\proyecto
+1708564915301: Listening for JDWP connection on address: javadebug
+Connected to debug VM via dt_shmem transport...
+Communication with debug VM fully established.
+Giving up on line #194
+Giving up on line #194
+Giving up on line #194
+Giving up on line #194
+Giving up on line #195
+Giving up on line #196
+Giving up on line #196
+Giving up on line #197
+Giving up on line #198
+Giving up on line #200
+Giving up on line #199
+Giving up on line #201
+Giving up on line #202
+Giving up on line #203
+Giving up on line #204
+Giving up on line #205
+Giving up on line #206
+Giving up on line #207
+java.net.UnknownHostException: Host desconocido (blackbox.bluej.org)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.InetAddress$PlatformNameService.lookupAllHostAddr(InetAddress.java:933)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1529)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:852)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1519)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1377)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1305)
+	at org.apache.http.impl.conn.SystemDefaultDnsResolver.resolve(SystemDefaultDnsResolver.java:44)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.resolveHostname(DefaultClientConnectionOperator.java:259)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:159)
+	at org.apache.http.impl.conn.ManagedClientConnectionImpl.open(ManagedClientConnectionImpl.java:304)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryConnect(DefaultRequestDirector.java:611)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:446)
+	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:863)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:106)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:57)
+	at bluej.collect.DataSubmitter.postData(DataSubmitter.java:177)
+	at bluej.collect.DataSubmitter.processQueue(DataSubmitter.java:133)
+	at bluej.collect.DataSubmitter$1.run(DataSubmitter.java:105)
+====
+
+====
+BlueJ run started: Thu Feb 29 16:43:46 COT 2024
+BlueJ version 5.2.1
+Java version 17.0.4.1
+JavaFX version 20.0.1+2
+Virtual machine: OpenJDK 64-Bit Server VM 17.0.4.1+1 (Eclipse Adoptium)
+Running on: Windows 10 10.0 (amd64)
+Java Home: C:\Users\Asus\Downloads\bluej\jdk
+----
+Internal error: Unable to load frame labels file: C:\Users\Asus\Downloads\bluej\lib\spanish\frame-labels
+Opening project: C:\Users\Asus\Downloads\proyecto\proyecto
+1709243028568: Listening for JDWP connection on address: javadebug
+Connected to debug VM via dt_shmem transport...
+Communication with debug VM fully established.
+Error or exception for source not in project: C:\Users\Asus\Downloads\proyecto\proyecto\Preconditions.java, line 64: java.lang.IndexOutOfBoundsException:
+Index 3 out of bounds for length 3
+Error or exception for source not in project: C:\Users\Asus\Downloads\proyecto\proyecto\Preconditions.java, line 70: java.lang.IndexOutOfBoundsException:
+Index 3 out of bounds for length 3 (in jdk.internal.util.Preconditions)
+Error or exception for source not in project: C:\Users\Asus\Downloads\proyecto\proyecto\Preconditions.java, line 266: java.lang.IndexOutOfBoundsException:
+Index 3 out of bounds for length 3 (in jdk.internal.util.Preconditions)
+Error or exception for source not in project: C:\Users\Asus\Downloads\proyecto\proyecto\Objects.java, line 359: java.lang.IndexOutOfBoundsException:
+Index 3 out of bounds for length 3 (in jdk.internal.util.Preconditions)
+Error or exception for source not in project: C:\Users\Asus\Downloads\proyecto\proyecto\ArrayList.java, line 427: java.lang.IndexOutOfBoundsException:
+Index 3 out of bounds for length 3 (in jdk.internal.util.Preconditions)
+====
+
+====
+BlueJ run started: Thu Feb 29 18:20:53 COT 2024
+BlueJ version 5.2.1
+Java version 17.0.4.1
+JavaFX version 20.0.1+2
+Virtual machine: OpenJDK 64-Bit Server VM 17.0.4.1+1 (Eclipse Adoptium)
+Running on: Windows 10 10.0 (amd64)
+Java Home: C:\Users\Asus\Downloads\bluej\jdk
+----
+Internal error: Unable to load frame labels file: C:\Users\Asus\Downloads\bluej\lib\spanish\frame-labels
+Opening project: C:\Users\Asus\Downloads\proyecto\proyecto
+1709248854461: Listening for JDWP connection on address: javadebug
+Connected to debug VM via dt_shmem transport...
+Communication with debug VM fully established.
+Giving up on line #1
+Giving up on line #2
+Giving up on line #3
+Giving up on line #4
+Giving up on line #5
+Giving up on line #6
+Giving up on line #7
+Giving up on line #8
+Giving up on line #9
+Giving up on line #10
+Giving up on line #11
+Giving up on line #12
+Giving up on line #13
+Giving up on line #14
+Giving up on line #15
+Giving up on line #16
+Giving up on line #17
+Giving up on line #18
+Giving up on line #19
+Giving up on line #20
+Giving up on line #21
+Giving up on line #22
+Giving up on line #23
+Giving up on line #24
+Giving up on line #25
+Giving up on line #26
+Giving up on line #27
+Giving up on line #28
+Giving up on line #29
+Giving up on line #30
+Giving up on line #1
+Giving up on line #2
+Giving up on line #3
+Giving up on line #4
+Giving up on line #5
+Giving up on line #6
+Giving up on line #7
+Giving up on line #8
+Giving up on line #9
+Giving up on line #10
+Giving up on line #11
+Giving up on line #12
+Giving up on line #13
+Giving up on line #14
+Giving up on line #15
+Giving up on line #16
+Giving up on line #17
+Giving up on line #18
+Giving up on line #19
+Giving up on line #20
+Giving up on line #21
+Giving up on line #22
+Giving up on line #23
+Giving up on line #24
+Giving up on line #25
+Giving up on line #26
+Giving up on line #27
+Giving up on line #28
+Giving up on line #29
+Giving up on line #30
+Giving up on line #291
+An unexpected exception occurred:
+java.lang.NullPointerException: Cannot invoke "java.util.List.iterator()" because the return value of "bluej.parser.nodes.ParsedTypeNode.getExtendedTypes()" is null
+	at bluej.parser.entity.ParsedReflective.getSuperTypes(ParsedReflective.java:98)
+	at bluej.parser.ParseUtils.getCompletionsForTarget(ParseUtils.java:299)
+	at bluej.parser.ParseUtils.getPossibleCompletions(ParseUtils.java:84)
+	at bluej.editor.flow.FlowErrorManager$ErrorDetails.getPossibleCorrectionsStream(FlowErrorManager.java:943)
+	at bluej.editor.flow.FlowErrorManager$ErrorDetails.getPossibleCorrectionsStream(FlowErrorManager.java:884)
+	at bluej.editor.flow.FlowErrorManager$ErrorDetails.<init>(FlowErrorManager.java:298)
+	at bluej.editor.flow.FlowErrorManager.showErrors(FlowErrorManager.java:111)
+	at bluej.editor.flow.FlowErrorManager.lambda$addErrorHighlight$0(FlowErrorManager.java:105)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:456)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:455)
+	at com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+An unexpected exception occurred:
+java.lang.NullPointerException: Cannot invoke "java.util.List.iterator()" because the return value of "bluej.parser.nodes.ParsedTypeNode.getExtendedTypes()" is null
+	at bluej.parser.entity.ParsedReflective.getSuperTypes(ParsedReflective.java:98)
+	at bluej.parser.ParseUtils.getCompletionsForTarget(ParseUtils.java:299)
+	at bluej.parser.ParseUtils.getPossibleCompletions(ParseUtils.java:84)
+	at bluej.editor.flow.FlowErrorManager$ErrorDetails.getPossibleCorrectionsStream(FlowErrorManager.java:943)
+	at bluej.editor.flow.FlowErrorManager$ErrorDetails.getPossibleCorrectionsStream(FlowErrorManager.java:884)
+	at bluej.editor.flow.FlowErrorManager$ErrorDetails.<init>(FlowErrorManager.java:298)
+	at bluej.editor.flow.FlowErrorManager.showErrors(FlowErrorManager.java:111)
+	at bluej.editor.flow.FlowErrorManager.lambda$addErrorHighlight$0(FlowErrorManager.java:105)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:456)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:455)
+	at com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+An unexpected exception occurred:
+java.lang.IllegalArgumentException: line/column numbers must be > 0
+	at bluej.parser.SourceLocation.<init>(SourceLocation.java:39)
+	at bluej.editor.flow.FlowErrorManager$ErrorDetails.<init>(FlowErrorManager.java:232)
+	at bluej.editor.flow.FlowErrorManager.showErrors(FlowErrorManager.java:111)
+	at bluej.editor.flow.FlowErrorManager.lambda$addErrorHighlight$0(FlowErrorManager.java:105)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:456)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:455)
+	at com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:283)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:309)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:350)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:803)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:966)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:478)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(SSLSocketInputRecord.java:472)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.bytesInCompletePacket(SSLSocketInputRecord.java:70)
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1460)
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1064)
+	at org.apache.http.impl.io.AbstractSessionInputBuffer.fillBuffer(AbstractSessionInputBuffer.java:160)
+	at org.apache.http.impl.io.SocketInputBuffer.fillBuffer(SocketInputBuffer.java:84)
+	at org.apache.http.impl.io.AbstractSessionInputBuffer.readLine(AbstractSessionInputBuffer.java:273)
+	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:140)
+	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:57)
+	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:260)
+	at org.apache.http.impl.AbstractHttpClientConnection.receiveResponseHeader(AbstractHttpClientConnection.java:283)
+	at org.apache.http.impl.conn.DefaultClientConnection.receiveResponseHeader(DefaultClientConnection.java:251)
+	at org.apache.http.impl.conn.ManagedClientConnectionImpl.receiveResponseHeader(ManagedClientConnectionImpl.java:197)
+	at org.apache.http.protocol.HttpRequestExecutor.doReceiveResponse(HttpRequestExecutor.java:271)
+	at org.apache.http.protocol.HttpRequestExecutor.execute(HttpRequestExecutor.java:123)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryExecute(DefaultRequestDirector.java:685)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:487)
+	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:863)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:106)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:57)
+	at bluej.collect.DataSubmitter.postData(DataSubmitter.java:177)
+	at bluej.collect.DataSubmitter.processQueue(DataSubmitter.java:133)
+	at bluej.collect.DataSubmitter$1.run(DataSubmitter.java:105)
+Giving up on line #120
+Giving up on line #131
+====
+
+====
+BlueJ run started: Fri Mar 01 18:25:02 COT 2024
+BlueJ version 5.2.1
+Java version 17.0.4.1
+JavaFX version 20.0.1+2
+Virtual machine: OpenJDK 64-Bit Server VM 17.0.4.1+1 (Eclipse Adoptium)
+Running on: Windows 10 10.0 (amd64)
+Java Home: C:\Users\Asus\Downloads\bluej\jdk
+----
+Internal error: Unable to load frame labels file: C:\Users\Asus\Downloads\bluej\lib\spanish\frame-labels
+Opening project: C:\Users\Asus\Downloads\proyecto\proyecto
+1709335503171: Listening for JDWP connection on address: javadebug
+Connected to debug VM via dt_shmem transport...
+Communication with debug VM fully established.
+====
+
+====
+BlueJ run started: Sat Mar 02 12:08:25 COT 2024
+BlueJ version 5.2.1
+Java version 17.0.4.1
+JavaFX version 20.0.1+2
+Virtual machine: OpenJDK 64-Bit Server VM 17.0.4.1+1 (Eclipse Adoptium)
+Running on: Windows 10 10.0 (amd64)
+Java Home: C:\Users\Asus\Downloads\bluej\jdk
+----
+Internal error: Unable to load frame labels file: C:\Users\Asus\Downloads\bluej\lib\spanish\frame-labels
+Opening project: C:\Users\Asus\Downloads\proyecto\proyecto
+1709399305812: Listening for JDWP connection on address: javadebug
+Connected to debug VM via dt_shmem transport...
+Communication with debug VM fully established.
+An unexpected exception occurred:
+java.lang.IllegalArgumentException: line/column numbers must be > 0
+	at bluej.parser.SourceLocation.<init>(SourceLocation.java:39)
+	at bluej.editor.flow.FlowErrorManager$ErrorDetails.<init>(FlowErrorManager.java:232)
+	at bluej.editor.flow.FlowErrorManager.showErrors(FlowErrorManager.java:111)
+	at bluej.editor.flow.FlowErrorManager.lambda$addErrorHighlight$0(FlowErrorManager.java:105)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:456)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:455)
+	at com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Giving up on line #166
+Error or exception for source not in project: C:\Users\Asus\Downloads\proyecto\proyecto\Preconditions.java, line 64: java.lang.IndexOutOfBoundsException:
+Index -1 out of bounds for length 1
+Error or exception for source not in project: C:\Users\Asus\Downloads\proyecto\proyecto\Preconditions.java, line 70: java.lang.IndexOutOfBoundsException:
+Index -1 out of bounds for length 1 (in jdk.internal.util.Preconditions)
+Error or exception for source not in project: C:\Users\Asus\Downloads\proyecto\proyecto\Preconditions.java, line 266: java.lang.IndexOutOfBoundsException:
+Index -1 out of bounds for length 1 (in jdk.internal.util.Preconditions)
+Error or exception for source not in project: C:\Users\Asus\Downloads\proyecto\proyecto\Objects.java, line 359: java.lang.IndexOutOfBoundsException:
+Index -1 out of bounds for length 1 (in jdk.internal.util.Preconditions)
+Error or exception for source not in project: C:\Users\Asus\Downloads\proyecto\proyecto\ArrayList.java, line 427: java.lang.IndexOutOfBoundsException:
+Index -1 out of bounds for length 1 (in jdk.internal.util.Preconditions)
+Error or exception for source not in project: C:\Users\Asus\Downloads\proyecto\proyecto\Preconditions.java, line 64: java.lang.IndexOutOfBoundsException:
+Index -1 out of bounds for length 1
+Error or exception for source not in project: C:\Users\Asus\Downloads\proyecto\proyecto\Preconditions.java, line 70: java.lang.IndexOutOfBoundsException:
+Index -1 out of bounds for length 1 (in jdk.internal.util.Preconditions)
+Error or exception for source not in project: C:\Users\Asus\Downloads\proyecto\proyecto\Preconditions.java, line 266: java.lang.IndexOutOfBoundsException:
+Index -1 out of bounds for length 1 (in jdk.internal.util.Preconditions)
+Error or exception for source not in project: C:\Users\Asus\Downloads\proyecto\proyecto\Objects.java, line 359: java.lang.IndexOutOfBoundsException:
+Index -1 out of bounds for length 1 (in jdk.internal.util.Preconditions)
+Error or exception for source not in project: C:\Users\Asus\Downloads\proyecto\proyecto\ArrayList.java, line 427: java.lang.IndexOutOfBoundsException:
+Index -1 out of bounds for length 1 (in jdk.internal.util.Preconditions)
+An unexpected exception occurred:
+java.lang.IllegalArgumentException: line/column numbers must be > 0
+	at bluej.parser.SourceLocation.<init>(SourceLocation.java:39)
+	at bluej.editor.flow.FlowErrorManager$ErrorDetails.<init>(FlowErrorManager.java:232)
+	at bluej.editor.flow.FlowErrorManager.showErrors(FlowErrorManager.java:111)
+	at bluej.editor.flow.FlowErrorManager.lambda$addErrorHighlight$0(FlowErrorManager.java:105)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:456)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:455)
+	at com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+An unexpected exception occurred:
+java.lang.IllegalArgumentException: line/column numbers must be > 0
+	at bluej.parser.SourceLocation.<init>(SourceLocation.java:39)
+	at bluej.editor.flow.FlowErrorManager$ErrorDetails.<init>(FlowErrorManager.java:232)
+	at bluej.editor.flow.FlowErrorManager.showErrors(FlowErrorManager.java:111)
+	at bluej.editor.flow.FlowErrorManager.lambda$addErrorHighlight$0(FlowErrorManager.java:105)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:456)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:455)
+	at com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+An unexpected exception occurred:
+java.lang.IllegalArgumentException: line/column numbers must be > 0
+	at bluej.parser.SourceLocation.<init>(SourceLocation.java:39)
+	at bluej.editor.flow.FlowErrorManager$ErrorDetails.<init>(FlowErrorManager.java:232)
+	at bluej.editor.flow.FlowErrorManager.showErrors(FlowErrorManager.java:111)
+	at bluej.editor.flow.FlowErrorManager.lambda$addErrorHighlight$0(FlowErrorManager.java:105)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:456)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:455)
+	at com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Giving up on line #43
+Giving up on line #39
+Giving up on line #36
+Giving up on line #36
+Giving up on line #39
