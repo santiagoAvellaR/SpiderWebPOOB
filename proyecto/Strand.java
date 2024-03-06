@@ -15,7 +15,7 @@ public class Strand
     private boolean isVisible;
     private String color;
     private double tetha1;
-    
+    private boolean hasSpot;
 
     /**
      * Constructor for objects of class Strand
@@ -92,4 +92,11 @@ public class Strand
         tetha1 =  Math.toRadians(tethanew);
     }
     
+    public boolean hasSpot(){
+        return hasSpot;
+    }
+    
+    public void setHasSpot(boolean bool){
+        hasSpot = bool;
+    }
 }

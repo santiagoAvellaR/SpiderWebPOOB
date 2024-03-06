@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.Collections;
-import java.util.Scanner;
 
 /**
  * Write a description of class SpiderWeb here.
@@ -194,6 +193,7 @@ public class SpiderWeb{
             double angle = strands.get(strand-1).getTetha1();
             Spot spot = new Spot(xPosition - spotRadius + (int) (largeStrand*Math.cos(angle)), yPosition - spotRadius - (int) (largeStrand*Math.sin(angle)),color, strand-1);
             spotsMap.put(color, spot);
+            strands.get(strand-1).setHasSpot(true);
             if (isVisible){spot.makeVisible();}
             ok = true;
         }
@@ -204,7 +204,14 @@ public class SpiderWeb{
         if (spotsMap.containsKey(color)) {
             spotsMap.get(color).makeInvisible();
             spotsMap.remove(color);
+            for (Strand strand : strands){
+                if(strand.getColor().equals(color)){
+                    strand.setHasSpot(false);
+                    break;
+                }
+            }
             ok = true;
+            
         }
         else {ok = false;}
     }
@@ -219,17 +226,6 @@ public class SpiderWeb{
         return spotsMap.keySet().toArray(new String[0]);
     }
     
-    private Spot verifyIfSpiderIsInASpot(int xCoordinate, int yCoordinate){
-        Spot spot = null;
-        for(String color : spotsMap.keySet().toArray(new String[0])){
-            if(spotsMap.get(color).getXPosition()==xCoordinate && spotsMap.get(color).getYPosition()==yCoordinate){
-                spot = spotsMap.get(color);
-                break;
-            }
-        }
-        return spot;
-    }
-    
     private void spiderWalksForward(int startStrand){
         boolean canKeepAdvancing = true;
         int actualStrand = startStrand;
@@ -240,29 +236,44 @@ public class SpiderWeb{
             List<Integer> bridgeKeys = new ArrayList<>(strandsBridgesMap.get(actualStrand).keySet());
             Collections.sort(bridgeKeys);
             for(Integer bridgeKey : bridgeKeys){
+                double newAngle = spider.getVisionAngle()!=strandsBridgesMap.get(actualStrand).get(bridgeKey).getTetha1()?strandsBridgesMap.get(actualStrand).get(bridgeKey).getTetha1():strandsBridgesMap.get(actualStrand).get(bridgeKey).getTetha2();
+                String color = strandsBridgesMap.get(actualStrand).get(bridgeKey).getColor();
                 if(bridgeKey > spider.getRadiusFromCenter()){
-                    spider.walkToTheBridge(bridgeKey);
                     int newStrand = actualStrand == strandsBridgesMap.get(actualStrand).get(bridgeKey).getStrand1()?strandsBridgesMap.get(actualStrand).get(bridgeKey).getStrand2():strandsBridgesMap.get(actualStrand).get(bridgeKey).getStrand1();
-                    double newAngle = spider.getVisionAngle()!=strandsBridgesMap.get(actualStrand).get(bridgeKey).getTetha1()?strandsBridgesMap.get(actualStrand).get(bridgeKey).getTetha1():strandsBridgesMap.get(actualStrand).get(bridgeKey).getTetha2();
-                    if(!usedBridges.contains(strandsBridgesMap.get(actualStrand).get(bridgeKey).getColor())){usedBridges.add(strandsBridgesMap.get(actualStrand).get(bridgeKey).getColor());}
-                    spider.crossTheBridge(newAngle, actualStrand);
+                    moveSpider(bridgeKey, newAngle, actualStrand, color, true);
                     actualStrand = newStrand;
                     break;
                 }
                 if(bridgeKeys.indexOf(bridgeKey)+1>=bridgeKeys.size()){
-                    spider.walkToTheBridge(largeStrand);
-                    spider.setIsCentered(false);
-                    spider.setNumberStrand(actualStrand);
-                    Spot spot = verifyIfSpiderIsInASpot(-8 + SpiderWeb.xPosition + (int) (largeStrand*Math.cos(spider.getVisionAngle())), -8 + SpiderWeb.yPosition - (int) (largeStrand*Math.sin(spider.getVisionAngle())));
-                    if (spot != null && !reachableSpots.contains(spot.getColor())){reachableSpots.add(spot.getColor());}
+                    moveSpider(bridgeKey, newAngle, actualStrand, color, false);
                     canKeepAdvancing = false;
-                    System.out.println("no encontro mas hilos: " + spider.getNumberStrand());
                 }
             }
         }
     }
     
-    private void moveSpider(boolean moveAndCross){
+    private void moveSpider(int radius, double newAngle, int newStrand, String bridgeColor, boolean moveAndCross){
+        spider.walkToTheBridge(radius);
+        if(moveAndCross){
+            spider.crossTheBridge(newAngle, newStrand);
+            if(!usedBridges.contains(bridgeColor)){
+                usedBridges.add(bridgeColor);
+            }
+        }
+        else{
+            spider.walkToTheBridge(largeStrand);
+            spider.setIsCentered(false);
+            spider.setNumberStrand(newStrand);
+            if(strands.get(newStrand).hasSpot()){
+                for (String spotColor : spotsMap.keySet().toArray(new String[0])){
+                    if(spotsMap.get(spotColor).getNumberStrand()==newStrand){
+                        reachableSpots.add(spotColor);
+                        break;
+                    }
+                }
+            }  
+        }
+        
         
     }
     
@@ -279,8 +290,6 @@ public class SpiderWeb{
                     int newStrand = actualStrand == strandsBridgesMap.get(actualStrand).get(bridgeKey).getStrand1()?strandsBridgesMap.get(actualStrand).get(bridgeKey).getStrand2():strandsBridgesMap.get(actualStrand).get(bridgeKey).getStrand1();
                     double newAngle = spider.getVisionAngle()!=strandsBridgesMap.get(actualStrand).get(bridgeKey).getTetha1()?strandsBridgesMap.get(actualStrand).get(bridgeKey).getTetha1():strandsBridgesMap.get(actualStrand).get(bridgeKey).getTetha2();
                     spider.crossTheBridge(newAngle, actualStrand);
-                    Scanner scan = new Scanner(System.in);
-                    scan.nextLine();
                     actualStrand = newStrand;
                     break;
                 }

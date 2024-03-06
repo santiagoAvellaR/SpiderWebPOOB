@@ -188,12 +188,12 @@ public class Spider{
         boolean clockWise = movementAngle < visionAngle;
         rotate(movementAngle);
         if(clockWise){
-            for(double i = visionAngle; i < movementAngle; i-=0.01){
+            for(double i = visionAngle; i < movementAngle; i-=0.00001){
                 setPosition(-body.getRadius() + SpiderWeb.xPosition + (int) (radiusFromCenter*Math.cos(i)), -body.getRadius() + SpiderWeb.yPosition - (int) (radiusFromCenter*Math.sin(i)));
             }
         }
         else{
-            for(double i = visionAngle; i < movementAngle; i+=0.01){
+            for(double i = visionAngle; i < movementAngle; i+=0.00001){
                 setPosition(-body.getRadius() + SpiderWeb.xPosition + (int) (radiusFromCenter*Math.cos(i)), -body.getRadius() + SpiderWeb.yPosition - (int) (radiusFromCenter*Math.sin(i)));
             }
         }
