@@ -582,3 +582,35 @@ Giving up on line #39
 Giving up on line #36
 Giving up on line #36
 Giving up on line #39
+====
+
+====
+BlueJ run started: Thu Mar 07 22:07:23 COT 2024
+BlueJ version 5.2.1
+Java version 17.0.4.1
+JavaFX version 20.0.1+2
+Virtual machine: OpenJDK 64-Bit Server VM 17.0.4.1+1 (Eclipse Adoptium)
+Running on: Windows 10 10.0 (amd64)
+Java Home: C:\Users\Asus\Downloads\bluej\jdk
+----
+Internal error: Unable to load frame labels file: C:\Users\Asus\Downloads\bluej\lib\spanish\frame-labels
+Opening project: C:\Users\Asus\Downloads\proyecto\SpiderWebPoob\proyecto
+1709867246084: Listening for JDWP connection on address: javadebug
+Connected to debug VM via dt_shmem transport...
+Communication with debug VM fully established.
+====
+
+====
+BlueJ run started: Fri Mar 08 18:48:51 COT 2024
+BlueJ version 5.2.1
+Java version 17.0.4.1
+JavaFX version 20.0.1+2
+Virtual machine: OpenJDK 64-Bit Server VM 17.0.4.1+1 (Eclipse Adoptium)
+Running on: Windows 10 10.0 (amd64)
+Java Home: C:\Users\Asus\Downloads\bluej\jdk
+----
+Internal error: Unable to load frame labels file: C:\Users\Asus\Downloads\bluej\lib\spanish\frame-labels
+Opening project: C:\Users\Asus\Downloads\proyecto\SpiderWebPoob\proyecto
+1709941732531: Listening for JDWP connection on address: javadebug
+Connected to debug VM via dt_shmem transport...
+Communication with debug VM fully established.
