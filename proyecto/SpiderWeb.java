@@ -29,7 +29,7 @@ public class SpiderWeb{
     private ArrayList<String> reachableSpots = new ArrayList<>();
     // spider
     private Spider spider;
-    ArrayList<ArrayList<Integer>> spiderTracker = new ArrayList<>(); //{{numberStrand, radius}}
+    ArrayList<ArrayList<Integer>> spiderTracker = new ArrayList<>(); //{{radius, numberStrand}}
 
     /**
      * Constructor for objects of class SpiderWeb
@@ -340,10 +340,25 @@ public class SpiderWeb{
         }
     }
     
-    public int[] spiderLastPath(){
-        int size = spiderTracker.size();
-        int[] spiderLastPath = {spiderTracker.get(size-2).get(0), spiderTracker.get(size-2).get(1), spiderTracker.get(size-1).get(0), spiderTracker.get(size-1).get(1)};
-        return spiderLastPath;
+    private void paintLastPath(List<Integer> coordinates){
+        if(coordinates.get(1)==coordinates.get(3)){
+            
+        }
+    }
+    
+    public int[] spiderLastPath() {
+        List<Integer> spiderLastPath = new ArrayList<>();
+        if (spiderTracker.size() >= 2) {
+            int size = spiderTracker.size();
+            spiderLastPath.add(spiderTracker.get(size - 2).get(0));
+            spiderLastPath.add(spiderTracker.get(size - 2).get(1));
+            spiderLastPath.add(spiderTracker.get(size - 1).get(0));
+            spiderLastPath.add(spiderTracker.get(size - 1).get(1));
+            paintLastPath(spiderLastPath);
+            ok = true;
+        }
+        else{ok = false;}
+        return spiderLastPath.stream().mapToInt(Integer::intValue).toArray();
     }
     
     public void finish(){

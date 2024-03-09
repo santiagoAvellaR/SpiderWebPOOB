@@ -614,3 +614,12 @@ Opening project: C:\Users\Asus\Downloads\proyecto\SpiderWebPoob\proyecto
 1709941732531: Listening for JDWP connection on address: javadebug
 Connected to debug VM via dt_shmem transport...
 Communication with debug VM fully established.
+Giving up on line #126
+Giving up on line #199
+Giving up on line #401
+Giving up on line #196
+Giving up on line #199
+Giving up on line #186
+Giving up on line #196
+Giving up on line #199
+Giving up on line #424

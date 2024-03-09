@@ -47,6 +47,7 @@ public class Canvas{
     private Color purple = new Color(138, 43, 226);
     private Color golden = new Color(212, 175, 55);
     private Color burgundy = new Color(86, 7, 12);
+    private Color blueGray = new Color(100, 120, 150);
     
     /**
      * Create a Canvas.
@@ -158,6 +159,8 @@ public class Canvas{
             graphic.setColor(golden);
         else if(colorString.equals("burgundy"))
             graphic.setColor(burgundy);
+        else if(colorString.equals("blueGray"))
+            graphic.setColor(blueGray);
         else
             graphic.setColor(Color.black);
     }
