@@ -20,7 +20,7 @@ public class Strand
     /**
      * Constructor for objects of class Strand
      */
-    public Strand(int xPos, int yPos, int rad, double angle)
+    public Strand(int xPos, int yPos, int rad, double angle, String color)
     {
         // initialise instance variables
         tetha1 = Math.toRadians(angle);
@@ -28,7 +28,7 @@ public class Strand
         yPosition = yPos;
         length = rad;
         isVisible = false;
-        color = "black";
+        this.color = color;
     }
     
     public void makeVisible(){

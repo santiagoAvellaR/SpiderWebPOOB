@@ -22,7 +22,7 @@ public class Spider{
      * Constructor for objects of class Spider
      */
     public Spider(int xPos, int yPos){
-        visionAngle = Math.toRadians(90);
+        visionAngle = Math.toRadians(0);
         xPosition = xPos;
         yPosition = yPos;
         isVisible = false;
@@ -130,6 +130,7 @@ public class Spider{
         body.setPosition(x, y);
         organizeParts();
         rotate(tetha);
+        organizeParts();
         if (isVisible){
             makeInvisible();
             makeVisible();

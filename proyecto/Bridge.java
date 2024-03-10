@@ -33,23 +33,27 @@ public class Bridge
         strand1 = str1;
         strand2 = str2;
     }
-    public int getStrand1()
-    {   return strand1;
+    
+    public int getStrand1(){
+        return strand1;
     }
-    public int getStrand2()
-    {   return strand2;
+    
+    public int getStrand2(){
+        return strand2;
     }
    
-    public void setStrand2(int nstrand)
-    {   strand2 = nstrand;
+    public void setStrand2(int nstrand){
+        strand2 = nstrand;
      }
 
     public void setTetha1(double ang){
         tetha1 = ang;
     }
+    
     public void setTetha2(double ang){
         tetha2 = ang;
     }
+    
     public void makeVisible(){
         isVisible = true;
         draw();
