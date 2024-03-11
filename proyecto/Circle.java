@@ -160,10 +160,10 @@ public class Circle{
     }
     
     public int getXCenterPosition(){
-        return xPosition+diameter/2;
+        return xPosition+(diameter/2);
     }
     
     public int getYCenterPosition(){
-        return yPosition+diameter/2;
+        return yPosition+(diameter/2);
     }
 }
