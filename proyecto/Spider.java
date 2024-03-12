@@ -16,13 +16,11 @@ public class Spider{
     private Circle body;
     private boolean isVisible;
     private boolean isCentered;
-     
 
     /**
      * Constructor for objects of class Spider
      */
     public Spider(int xPos, int yPos){
-        visionAngle = Math.toRadians(0);
         xPosition = xPos;
         yPosition = yPos;
         isVisible = false;
@@ -49,6 +47,7 @@ public class Spider{
         
         numberStrand = 0;
         radiusFromCenter = 0;
+        visionAngle = Math.toRadians(90);
         organizeParts();
     }
     
@@ -100,44 +99,39 @@ public class Spider{
         eyeR.changeSize(eyesSize,eyesSize);
         eyeL.changeSize(eyesSize,eyesSize);
         organizeParts();
+        rotate(visionAngle);
     }
     
     private void organizeParts(){
+        boolean wasVisible = isVisible?true:false;
+        makeInvisible();
         face.setPosition(xPosition + body.getRadius() - face.getRadius(), yPosition + (int) (face.getDiameter()*0.1) - face.getDiameter());
         eyeR.setPosition(face.getXPosition() + face.getRadius() + eyeR.getWidth(), face.getYPosition() + face.getRadius() - eyeR.getHeight());
         eyeL.setPosition(face.getXPosition() + face.getRadius() - eyeL.getWidth(), face.getYPosition() + face.getRadius() - eyeL.getHeight());
+        if(wasVisible){makeVisible();}
     }
     
     public void setPosition(int x, int y){
-        boolean wasVisible;
-        if(isVisible){wasVisible=true;}
-        else{wasVisible=false;}
-        makeInvisible();
-        xPosition = x;
-        yPosition = y;
-        body.setPosition(x, y);
-        organizeParts();
-        rotate(visionAngle);
-        if (wasVisible){
-            makeInvisible();
-            makeVisible();
-        }
+        setPosition(x, y, visionAngle);
     }
     
     public void setPosition(int x, int y, double tetha){
+        boolean wasVisible;
+        if(isVisible){
+            wasVisible=true;
+            makeInvisible();
+        }
+        else{wasVisible=false;}
         xPosition = x;
         yPosition = y;
         body.setPosition(x, y);
         organizeParts();
-        rotate(tetha);
-        organizeParts();
-        if (isVisible){
-            makeInvisible();
+        if (wasVisible){
             makeVisible();
         }
-        setVisionAngle(tetha);
+        rotate(tetha);
     }
-
+    
     private void rotateFace(double tetha){
         int x2 = body.getXCenterPosition();
         int y2 = body.getYCenterPosition();
@@ -149,21 +143,19 @@ public class Spider{
         face.setPosition(newXPosition - face.getRadius(), newYPosition - face.getRadius());
     }
     
-    public void rotateEyes(double tetha){
-        int x2 = face.getXCenterPosition();
-        int y2 = face.getYCenterPosition();
-        int x1 = eyeR.getXPosition();
-        int y1 = eyeR.getYPosition();
-        double lenBetweenCenters = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-        double angleBetweenEyes = Math.acos((Math.pow(2*eyeL.getWidth(),2)-2*Math.pow(lenBetweenCenters,2))/(-2*lenBetweenCenters));
-        System.out.println(angleBetweenEyes);
-        eyeR.setPosition(x2 + (int) (lenBetweenCenters*Math.cos(tetha+angleBetweenEyes/2)), y2 - (int) (lenBetweenCenters*Math.sin(tetha+angleBetweenEyes/2)));
+    private void rotateEyes(double tetha){
+        int x2 = body.getXCenterPosition();
+        int y2 = body.getYCenterPosition();
+        double lenBetweenCenters = Math.sqrt(Math.pow(body.getXCenterPosition() - eyeR.getXPosition(), 2) + Math.pow(body.getYCenterPosition() - eyeR.getYPosition(), 2));
+        double angleBetweenEyes = Math.acos(((lenBetweenCenters * lenBetweenCenters) + (lenBetweenCenters * lenBetweenCenters) - (2*eyeR.getWidth() * 2*eyeR.getWidth())) / (2 * lenBetweenCenters * lenBetweenCenters));
+        eyeR.setPosition(x2 + (int) (lenBetweenCenters*Math.cos(tetha+(double) (angleBetweenEyes/2.0))), y2 - (int) (lenBetweenCenters*Math.sin(tetha+(double) (angleBetweenEyes/2.0))));
+        eyeL.setPosition(x2 + (int) (lenBetweenCenters*Math.cos(tetha-(double) (angleBetweenEyes/2.0))), y2 - (int) (lenBetweenCenters*Math.sin(tetha-(double) (angleBetweenEyes/2.0))));
         eyeR.rotate(Math.toDegrees(tetha));
-        eyeL.setPosition(x2 + (int) (lenBetweenCenters*Math.cos(tetha-angleBetweenEyes/2)), y2 - (int) (lenBetweenCenters*Math.sin(tetha-angleBetweenEyes/2)));
         eyeL.rotate(Math.toDegrees(tetha));
     }
     
     public void rotate(double tetha){
+        organizeParts();
         rotateFace(tetha);
         rotateEyes(tetha);
         visionAngle = tetha;

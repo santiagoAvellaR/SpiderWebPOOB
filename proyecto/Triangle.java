@@ -110,10 +110,12 @@ public class Triangle{
      * @param newWidht the new width in pixels. newWidht must be >=0.
      */
     public void changeSize(int newHeight, int newWidth) {
-        erase();
         height = newHeight;
         width = newWidth;
-        draw();
+        if(isVisible){
+            erase();
+            draw();
+        }
     }
     
     /**
@@ -123,7 +125,10 @@ public class Triangle{
      */
     public void changeColor(String newColor){
         color = newColor;
-        draw();
+        if (isVisible){
+            makeInvisible();
+            makeVisible();
+        }
     }
 
     /**
@@ -184,17 +189,5 @@ public class Triangle{
     
     public int getHeight(){
         return height;
-    }
-    
-    public void translade(int radius, double angleRotation){
-        int lenTriangleSide = (int) (Math.sqrt(Math.pow(width/2, 2) + Math.pow(height, 2)));
-        double angle = Math.toRadians(angleRotation)*-1;
-        double angleBetweenEdges = 2*Math.atan2(width / 2.0, height);
-        Canvas canvas = Canvas.getCanvas();
-        int[] xpoints = { xPosition, xPosition - (int)(lenTriangleSide*Math.cos(angle-(angleBetweenEdges/2))), xPosition - (int)(lenTriangleSide*Math.cos(angle+(angleBetweenEdges/2))) };
-        int[] ypoints = { yPosition, yPosition - (int) (lenTriangleSide*Math.sin(angle-(angleBetweenEdges/2))), yPosition - (int) (lenTriangleSide*Math.sin(angle+(angleBetweenEdges/2))) };
-        canvas.draw(this, color, new Polygon(xpoints, ypoints, 3));
-        canvas.wait(1);
-        if(!isVisible){makeInvisible();}
     }
 }
