@@ -24,7 +24,7 @@ public class Spot
         spotCircle.changeSize(size);
         xPosition = xPos;
         yPosition = yPos;
-        spotCircle.setPosition(xPos, yPos);
+        spotCircle.setPosition(xPos, yPos, true);
         isVisible = false;
         numberStrand = numbStrand;
     }
@@ -46,7 +46,7 @@ public class Spot
     public void setPosition(int xPos, int yPos){
         xPosition = xPos;
         yPosition = yPos;
-        spotCircle.setPosition(xPos, yPos);
+        spotCircle.setPosition(xPos, yPos, true);
     }
     
     public String getColor(){

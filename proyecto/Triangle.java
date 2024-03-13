@@ -166,10 +166,10 @@ public class Triangle{
         }
     }
     
-    public void setPosition(int x, int y){
+    public void setPosition(int x, int y, boolean wantToShowChanges){
         xPosition = x;
         yPosition = y;
-        if(isVisible){
+        if(isVisible && wantToShowChanges){
             erase();
             draw();
         }

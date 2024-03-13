@@ -29,7 +29,7 @@ public class Spider{
         body = new Circle();
         body.changeSize(16);
         body.changeColor("black");
-        body.setPosition(xPosition, yPosition);
+        body.setPosition(xPosition, yPosition, true);
         
         int faceSize = (int) (body.getDiameter()*0.75); 
         face = new Circle();
@@ -103,12 +103,9 @@ public class Spider{
     }
     
     private void organizeParts(){
-        boolean wasVisible = isVisible?true:false;
-        makeInvisible();
-        face.setPosition(xPosition + body.getRadius() - face.getRadius(), yPosition + (int) (face.getDiameter()*0.1) - face.getDiameter());
-        eyeR.setPosition(face.getXPosition() + face.getRadius() + eyeR.getWidth(), face.getYPosition() + face.getRadius() - eyeR.getHeight());
-        eyeL.setPosition(face.getXPosition() + face.getRadius() - eyeL.getWidth(), face.getYPosition() + face.getRadius() - eyeL.getHeight());
-        if(wasVisible){makeVisible();}
+        face.setPosition(xPosition + body.getRadius() - face.getRadius(), yPosition + (int) (face.getDiameter()*0.1) - face.getDiameter(), false);
+        eyeR.setPosition(face.getXPosition() + face.getRadius() + eyeR.getWidth(), face.getYPosition() + face.getRadius() - eyeR.getHeight(), false);
+        eyeL.setPosition(face.getXPosition() + face.getRadius() - eyeL.getWidth(), face.getYPosition() + face.getRadius() - eyeL.getHeight(), false);
     }
     
     public void setPosition(int x, int y){
@@ -124,12 +121,12 @@ public class Spider{
         else{wasVisible=false;}
         xPosition = x;
         yPosition = y;
-        body.setPosition(x, y);
+        body.setPosition(x, y, true);
         organizeParts();
+        rotate(tetha);
         if (wasVisible){
             makeVisible();
         }
-        rotate(tetha);
     }
     
     private void rotateFace(double tetha){
@@ -140,7 +137,7 @@ public class Spider{
         double lenBetweenCenters = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
         int newXPosition = (int) (x2 + lenBetweenCenters*Math.cos(tetha));
         int newYPosition = (int) (y2 - lenBetweenCenters*Math.sin(tetha));
-        face.setPosition(newXPosition - face.getRadius(), newYPosition - face.getRadius());
+        face.setPosition(newXPosition - face.getRadius(), newYPosition - face.getRadius(), true);
     }
     
     private void rotateEyes(double tetha){
@@ -148,8 +145,8 @@ public class Spider{
         int y2 = body.getYCenterPosition();
         double lenBetweenCenters = Math.sqrt(Math.pow(body.getXCenterPosition() - eyeR.getXPosition(), 2) + Math.pow(body.getYCenterPosition() - eyeR.getYPosition(), 2));
         double angleBetweenEyes = Math.acos(((lenBetweenCenters * lenBetweenCenters) + (lenBetweenCenters * lenBetweenCenters) - (2*eyeR.getWidth() * 2*eyeR.getWidth())) / (2 * lenBetweenCenters * lenBetweenCenters));
-        eyeR.setPosition(x2 + (int) (lenBetweenCenters*Math.cos(tetha+(double) (angleBetweenEyes/2.0))), y2 - (int) (lenBetweenCenters*Math.sin(tetha+(double) (angleBetweenEyes/2.0))));
-        eyeL.setPosition(x2 + (int) (lenBetweenCenters*Math.cos(tetha-(double) (angleBetweenEyes/2.0))), y2 - (int) (lenBetweenCenters*Math.sin(tetha-(double) (angleBetweenEyes/2.0))));
+        eyeR.setPosition(x2 + (int) (lenBetweenCenters*Math.cos(tetha+(double) (angleBetweenEyes/2.0))), y2 - (int) (lenBetweenCenters*Math.sin(tetha+(double) (angleBetweenEyes/2.0))), true);
+        eyeL.setPosition(x2 + (int) (lenBetweenCenters*Math.cos(tetha-(double) (angleBetweenEyes/2.0))), y2 - (int) (lenBetweenCenters*Math.sin(tetha-(double) (angleBetweenEyes/2.0))), true);
         eyeR.rotate(Math.toDegrees(tetha));
         eyeL.rotate(Math.toDegrees(tetha));
     }
