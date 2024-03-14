@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.Collections;
+import java.util.Scanner;
 
 /**
  * Write a description of class SpiderWeb here.
@@ -264,6 +265,8 @@ public class SpiderWeb{
     
     private void spiderMoveAndCross(int radius, double newAngle, int newStrand, String bridgeColor){ 
         spider.walkToTheBridge(radius);
+        //Scanner scanner = new Scanner(System.in);
+        //scanner.nextLine();
         spiderTrackerRadius.add(radius);
         spiderTrackerStrands.add(spider.getNumberStrand());
         spider.crossTheBridge(newAngle, newStrand);

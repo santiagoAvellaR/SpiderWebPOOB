@@ -152,7 +152,6 @@ public class Spider{
     }
     
     public void rotate(double tetha){
-        organizeParts();
         rotateFace(tetha);
         rotateEyes(tetha);
         visionAngle = tetha;
@@ -170,23 +169,31 @@ public class Spider{
             }
         }
         setPosition(-body.getRadius() + SpiderWeb.xPosition + (int) (distance*Math.cos(visionAngle)), -body.getRadius() + SpiderWeb.yPosition - (int) (distance*Math.sin(visionAngle)));
+        rotate(visionAngle);
         setRadiusFromCenter(distance);
     }
     
     public void crossTheBridge(double movementAngle, int newStrand){
+        System.out.println("cruzando el puente");
         boolean clockWise = movementAngle < visionAngle;
         rotate(movementAngle);
+        System.out.println(clockWise);
+        System.out.println(visionAngle>movementAngle);
+        System.out.println((clockWise && visionAngle>movementAngle));
         if(clockWise){
-            for(double i = visionAngle; i < movementAngle; i-=0.00001){
+            for(double i = visionAngle; i > movementAngle; i-=0.000000000001){
                 setPosition(-body.getRadius() + SpiderWeb.xPosition + (int) (radiusFromCenter*Math.cos(i)), -body.getRadius() + SpiderWeb.yPosition - (int) (radiusFromCenter*Math.sin(i)));
+                System.out.println(i);
             }
         }
         else{
-            for(double i = visionAngle; i < movementAngle; i+=0.00001){
+            for(double i = visionAngle; i < movementAngle; i+=0.000000000001){
                 setPosition(-body.getRadius() + SpiderWeb.xPosition + (int) (radiusFromCenter*Math.cos(i)), -body.getRadius() + SpiderWeb.yPosition - (int) (radiusFromCenter*Math.sin(i)));
+                System.out.println(i);
             }
         }
         setPosition(-body.getRadius() + SpiderWeb.xPosition + (int) (radiusFromCenter*Math.cos(movementAngle)), -body.getRadius() + SpiderWeb.yPosition - (int) (radiusFromCenter*Math.sin(movementAngle)), movementAngle);
+        rotate(movementAngle);
         setNumberStrand(newStrand);
     }
     
