@@ -325,18 +325,19 @@ public class SpiderWeb{
     public void spiderWalk(boolean advance){
         makeInvisibleLastPath();
         if (advance){
+            if(spider.isCentered()){
                 int startStrand = spider.getNumberStrand();
                 spiderWalksForward(startStrand);
                 ok = true;
+            }
+            else{ok = false;}
         }
         else{
             if(!spider.isCentered()){
                 spiderWalksBackward();
                 ok = true;
             }
-            else{
-                ok = false;
-            }
+            else{ok = false;}
         }
     }
     
