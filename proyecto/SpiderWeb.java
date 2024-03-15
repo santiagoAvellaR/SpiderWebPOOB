@@ -22,7 +22,9 @@ public class SpiderWeb{
     // strands
     private ArrayList<Strand> strands = new ArrayList<>();
     // bridges
-    private ArrayList<ArrayList<Object>> bridgesUsedColors = new ArrayList<>(); // {string (color), integer (numberStrand), Bridge}
+    private ArrayList<String> bridgesColors = new ArrayList<>();
+    private ArrayList<Integer> bridgesNumberStrand = new ArrayList<>();
+    private ArrayList<Bridge> bridges = new ArrayList<>();
     private Map<Integer, Map<Integer, Bridge>> strandsBridgesMap= new HashMap<>();  // numberStrand -> radius -> Bridge
     private ArrayList<String> usedBridges = new ArrayList<>();
     // spots
@@ -50,16 +52,13 @@ public class SpiderWeb{
             this.strands.add(strand);
             strandsBridgesMap.put(this.strands.indexOf(strand), new HashMap<>());
         }
-        bridgesUsedColors.add(new ArrayList<>());
-        bridgesUsedColors.add(new ArrayList<>());
-        bridgesUsedColors.add(new ArrayList<>());
         spiderLastPath.add(new ArrayList<>());
         spiderLastPath.add(new ArrayList<>());
         ok = true;
     }
     
     public void addBridge(String color, int distance, int firstStrand){
-        if(1 <= firstStrand && firstStrand <= numberStrands && distance <= largeStrand && !(bridgesUsedColors.get(0).contains(color)) && numberStrands>1 && !color.equals("green")){
+        if(1 <= firstStrand && firstStrand <= numberStrands && distance <= largeStrand && !(bridgesColors.contains(color)) && numberStrands>1 && !color.equals("green")){
             int strand1 = firstStrand-1;
             int strand0 = strand1 == 0? numberStrands-1:strand1-1;
             int strand2 = firstStrand == numberStrands?0:firstStrand;
@@ -68,9 +67,9 @@ public class SpiderWeb{
                 if(isVisible){newBridge.makeVisible();}
                 strandsBridgesMap.get(strand1).put(distance, newBridge);
                 strandsBridgesMap.get(strand2).put(distance, newBridge);
-                bridgesUsedColors.get(0).add(color);
-                bridgesUsedColors.get(1).add(strand1);
-                bridgesUsedColors.get(2).add(newBridge);
+                bridgesColors.add(color);
+                bridgesNumberStrand.add(strand1);
+                bridges.add(newBridge);
                 ok = true;
             }
             else{ok = false;}
@@ -81,14 +80,14 @@ public class SpiderWeb{
     }
     
     public void delBridge(String color) {
-        if (bridgesUsedColors.get(0).contains(color)){
-            int index = bridgesUsedColors.get(0).indexOf(color);
-            int numberFirstStrand = (int) (bridgesUsedColors.get(1).get(index));
+        if (bridgesColors.contains(color)){
+            int index = bridgesColors.indexOf(color);
+            int numberFirstStrand = (int) (bridgesNumberStrand.get(index));
             int keyBridge = findKeyBridge(numberFirstStrand, color);
             if (keyBridge != -500){
-                bridgesUsedColors.get(0).remove(index);
-                bridgesUsedColors.get(1).remove(index);
-                bridgesUsedColors.get(2).remove(index);
+                bridgesColors.remove(index);
+                bridgesNumberStrand.remove(index);
+                bridges.remove(index);
                 strandsBridgesMap.get(numberFirstStrand).get(keyBridge).makeInvisible();
                 strandsBridgesMap.get(numberFirstStrand).remove(keyBridge);
                 ok = true;
@@ -110,9 +109,9 @@ public class SpiderWeb{
     }
 
     public void relocateBridge(String color, int distance){
-        if (bridgesUsedColors.get(0).contains(color) && distance <= largeStrand && distance > 0){
-            int index = bridgesUsedColors.get(0).indexOf(color);
-            int numberFirstStrand = (int) bridgesUsedColors.get(1).get(index);
+        if (bridgesColors.contains(color) && distance <= largeStrand && distance > 0){
+            int index = bridgesColors.indexOf(color);
+            int numberFirstStrand = bridgesNumberStrand.get(index);
             delBridge(color);
             addBridge(color, distance, numberFirstStrand+1);
         }
@@ -120,9 +119,9 @@ public class SpiderWeb{
     }
     
     public int bridge(String color){
-        if (bridgesUsedColors.get(0).contains(color)){
-            int index = bridgesUsedColors.get(0).indexOf(color);
-            int numberFirstStrand = (int) bridgesUsedColors.get(1).get(index);
+        if (bridgesColors.contains(color)){
+            int index = bridgesColors.indexOf(color);
+            int numberFirstStrand = bridgesNumberStrand.get(index);
             int numberStrand = -500;
             for (Integer radio : strandsBridgesMap.get(numberFirstStrand).keySet().toArray(new Integer[0])){
                 if (strandsBridgesMap.get(numberFirstStrand).get(radio).getColor().equals(color)){
@@ -144,7 +143,7 @@ public class SpiderWeb{
     
     public String[] bridges(){
         ok = true;
-        return bridgesUsedColors.get(0).toArray(new String[0]);
+        return bridgesColors.toArray(new String[0]);
     }
     
     public void makeVisible(){
@@ -160,8 +159,8 @@ public class SpiderWeb{
                     strandsBridgesMap.get(strandNumber).get(radio).makeVisible();
                 }
             }
-            for(int i = 0; i < bridgesUsedColors.get(2).size() ; i++){
-                Bridge bridge = (Bridge) bridgesUsedColors.get(2).get(i);
+            for(int i = 0; i < bridges.size() ; i++){
+                Bridge bridge = bridges.get(i);
                 bridge.makeVisible();
             }
             spider.makeVisible();
@@ -178,8 +177,8 @@ public class SpiderWeb{
             for(String color : spotsMap.keySet().toArray(new String[0])){
                 spotsMap.get(color).makeInvisible();
             }
-            for(int i = 0; i < bridgesUsedColors.get(2).size() ; i++){
-                Bridge bridge = (Bridge) bridgesUsedColors.get(2).get(i);
+            for(int i = 0; i < bridges.size() ; i++){
+                Bridge bridge = bridges.get(i);
                 bridge.makeInvisible();
             }
             makeInvisibleLastPath();
@@ -436,7 +435,9 @@ public class SpiderWeb{
         addBridge("purple", 70, 2);
         addBridge("golden", 100, 2);
         printBridgesInfo();
-        System.out.println(bridgesUsedColors);
+        System.out.println(bridgesColors);
+        System.out.println(bridgesNumberStrand);
+        System.out.println(bridges);
     }
     
     public void enlarge(double percentage){
@@ -478,8 +479,8 @@ public class SpiderWeb{
     }
     
     private void reOrganizeBridges(){
-        for (int a = 0; a < bridgesUsedColors.get(2).size(); a++){
-            Bridge bridge = (Bridge) bridgesUsedColors.get(2).get(a);
+        for (int a = 0; a < bridges.size(); a++){
+            Bridge bridge = bridges.get(a);
             bridge.setTetha1(strands.get(bridge.getStrand1()).getTetha1());
             if(bridge.getStrand2()==0){
                 bridge.setStrand2(numberStrands-1);
@@ -521,8 +522,8 @@ public class SpiderWeb{
     
     public String[] unUsedBridges(){
         ArrayList<String> unUsedBridges = new ArrayList<>();
-        for(int i = 0; i < bridgesUsedColors.get(2).size() ; i++){
-                Bridge bridge = (Bridge) bridgesUsedColors.get(2).get(i);
+        for(int i = 0; i < bridges.size() ; i++){
+                Bridge bridge = bridges.get(i);
                 if(!usedBridges.contains(bridge.getColor())){
                     unUsedBridges.add(bridge.getColor());
                 }
