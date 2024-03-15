@@ -174,12 +174,12 @@ public class Spider{
     }
     
     public void crossTheBridge(double movementAngle, int newStrand){
-        System.out.println("cruzando el puente");
+        //System.out.println("cruzando el puente");
         boolean clockWise = movementAngle < visionAngle;
         rotate(movementAngle);
-        System.out.println(clockWise);
-        System.out.println(visionAngle>movementAngle);
-        System.out.println((clockWise && visionAngle>movementAngle));
+        //System.out.println(clockWise);
+        //System.out.println(visionAngle>movementAngle);
+        //System.out.println((clockWise && visionAngle>movementAngle));
         if(clockWise){
             for(double i = visionAngle; i > movementAngle; i-=0.000000000001){
                 setPosition(-body.getRadius() + SpiderWeb.xPosition + (int) (radiusFromCenter*Math.cos(i)), -body.getRadius() + SpiderWeb.yPosition - (int) (radiusFromCenter*Math.sin(i)));

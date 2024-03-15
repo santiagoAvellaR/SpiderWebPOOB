@@ -414,7 +414,7 @@ public class SpiderWeb{
     }
     
     public void cargarTelaraña(){
-        addBridge("blue",20,1);
+        addBridge("blue",90,1);
         addBridge("red",40,3);
         addBridge("blueGray",60,3);
         addBridge("darkGreen",80,7);
@@ -425,7 +425,7 @@ public class SpiderWeb{
         addSpot("cyan", 7);
         addBridge("magenta", 30, 4);
         addBridge("darkGray", 60, 7);
-        addBridge("pink", 10, 7);
+        addBridge("pink", 110, 7);
         addBridge("brown", 30, 7);
         addBridge("black", 70, 5);
         addBridge("gray", 50, 4);
@@ -512,6 +512,7 @@ public class SpiderWeb{
     public String[] reachableSpots(){
         reachableSpots = new ArrayList<>();
         for(int i = 0; i < strands.size(); i++){
+            spiderSit(i+1);
             spiderWalksForward(i);
             spiderWalksBackward();
         }
