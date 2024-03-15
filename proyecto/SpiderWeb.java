@@ -287,7 +287,7 @@ public class SpiderWeb{
         spider.setNumberStrand(newStrand);
         if(strands.get(newStrand).hasSpot()){
             for (String spotColor : spotsMap.keySet().toArray(new String[0])){
-                if(spotsMap.get(spotColor).getNumberStrand()==newStrand){
+                if(spotsMap.get(spotColor).getNumberStrand()==newStrand && !reachableSpots.contains(spotColor)){
                     reachableSpots.add(spotColor);
                     break;
                 }
@@ -513,6 +513,7 @@ public class SpiderWeb{
         reachableSpots = new ArrayList<>();
         for(int i = 0; i < strands.size(); i++){
             spiderWalksForward(i);
+            spiderWalksBackward();
         }
         return reachableSpots.toArray(new String[0]);
     }
