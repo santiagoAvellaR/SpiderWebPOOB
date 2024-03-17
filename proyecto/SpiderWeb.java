@@ -32,10 +32,13 @@ public class SpiderWeb{
     private ArrayList<String> reachableSpots = new ArrayList<>();
     // spider
     private Spider spider;
-    ArrayList<Integer> spiderTrackerRadius = new ArrayList<>();
-    ArrayList<Integer> spiderTrackerStrands = new ArrayList<>();
-    ArrayList<ArrayList<Object>> spiderLastPath = new ArrayList<>(); // {{strands}, {bridges}}
-
+    private ArrayList<Integer> spiderTrackerRadius = new ArrayList<>();
+    private ArrayList<Integer> spiderTrackerStrands = new ArrayList<>();
+    private ArrayList<Strand> spiderLastPathStrand = new ArrayList<>();
+    private ArrayList<Bridge> spiderLastPathBridge = new ArrayList<>();
+    
+    private String[] availableColors = {};
+    
     /**
      * Constructor for objects of class SpiderWeb
      */
@@ -52,9 +55,29 @@ public class SpiderWeb{
             this.strands.add(strand);
             strandsBridgesMap.put(this.strands.indexOf(strand), new HashMap<>());
         }
-        spiderLastPath.add(new ArrayList<>());
-        spiderLastPath.add(new ArrayList<>());
         ok = true;
+    }
+    
+    public SpiderWeb(int strands, int favorite, int[][] bridges){
+        numberStrands = strands;
+        largeStrand = 120;
+        xPosition = 450;
+        yPosition = 350;
+        isVisible = false;
+        spider = new Spider(xPosition-8, yPosition-8);
+        double angle = (double) 360 / (double) numberStrands;
+        for (double i = 0; i < 360; i += angle) {
+            Strand strand = new Strand(xPosition, yPosition, largeStrand, i, "black");
+            this.strands.add(strand);
+            strandsBridgesMap.put(this.strands.indexOf(strand), new HashMap<>());
+        }
+        ok = true;
+        int indexColor = 0;
+        for (int[] info : bridges){
+            int numberStrand = info[1]-1;
+            int radius = info[0]; 
+            Bridge bridge = new Bridge(this.strands.get(numberStrand).getTetha1(), this.strands.get(numberStrand+1).getTetha1(), xPosition, yPosition, radius, availableColors[indexColor], numberStrand, numberStrand+1);
+        }
     }
     
     public void addBridge(String color, int distance, int firstStrand){
@@ -341,13 +364,11 @@ public class SpiderWeb{
     }
     
     private void makeInvisibleLastPath(){
-        for(int i = 0; i < spiderLastPath.get(0).size(); i++){
-            Strand strand = (Strand) (spiderLastPath.get(0).get(i));
-            strand.makeInvisible();
+        for(int i = 0; i < spiderLastPathStrand.size(); i++){
+            spiderLastPathStrand.get(i).makeInvisible();
         }
-        for(int j = 0; j < spiderLastPath.get(1).size(); j++){
-            Bridge bridge = (Bridge) (spiderLastPath.get(1).get(j));
-            bridge.makeInvisible();
+        for(int j = 0; j < spiderLastPathBridge.size(); j++){
+            spiderLastPathBridge.get(j).makeInvisible();
         }
     }
     
@@ -360,13 +381,13 @@ public class SpiderWeb{
             angle = Math.toDegrees(angle);
             Strand strand = new Strand(xPos, yPos, radius, angle, "green");
             if(isVisible){strand.makeVisible();}
-            spiderLastPath.get(0).add(strand);
+            spiderLastPathStrand.add(strand);
             
         }
         else{
             Bridge bridge = new Bridge(strands.get(coordinates.get(0)).getTetha1(), strands.get(coordinates.get(2)).getTetha1(), xPosition, yPosition, coordinates.get(1), "blueGray", coordinates.get(0), coordinates.get(2));
             if(isVisible){bridge.makeVisible();}
-            spiderLastPath.get(1).add(bridge);
+            spiderLastPathBridge.add(bridge);
         }
     }
     
@@ -388,6 +409,8 @@ public class SpiderWeb{
     }
     
     public void finish(){
+        makeInvisible();
+        isVisible = true;
     }
     
     public boolean ok(){
@@ -461,6 +484,7 @@ public class SpiderWeb{
         if(spotsMap.size() >= 1){
             reOrganizeSpots();
         }
+        ok = true;
     }
 
     private void reOrganizeStrands(){
@@ -517,6 +541,7 @@ public class SpiderWeb{
             spiderWalksForward(i);
             spiderWalksBackward();
         }
+        ok = true;
         return reachableSpots.toArray(new String[0]);
     }
     
