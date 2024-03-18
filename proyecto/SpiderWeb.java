@@ -137,11 +137,13 @@ public class SpiderWeb{
             int numberFirstStrand = bridgesNumberStrand.get(index);
             delBridge(color);
             addBridge(color, distance, numberFirstStrand+1);
+            ok = true;
         }
         else{ok = false;}
     }
     
-    public int bridge(String color){
+    public int[] bridge(String color){
+        ArrayList<Integer> bridgeAnswer = new ArrayList<>();
         if (bridgesColors.contains(color)){
             int index = bridgesColors.indexOf(color);
             int numberFirstStrand = bridgesNumberStrand.get(index);
@@ -149,19 +151,15 @@ public class SpiderWeb{
             for (Integer radio : strandsBridgesMap.get(numberFirstStrand).keySet().toArray(new Integer[0])){
                 if (strandsBridgesMap.get(numberFirstStrand).get(radio).getColor().equals(color)){
                     numberStrand = strandsBridgesMap.get(numberFirstStrand).get(radio).getStrand1();
+                    bridgeAnswer.add(numberStrand+1);
+                    bridgeAnswer.add(radio);
+                    ok = true;
                     break;
                 }
             }
-            if (numberStrand != -500){ 
-                ok = true;
-            }
-            else{ok = false;}
-            return numberStrand+1;
         }
-        else{
-            ok = false;
-            return -500;
-        }
+        else{ok = false;}
+        return bridgeAnswer.stream().mapToInt(Integer::intValue).toArray();
     }
     
     public String[] bridges(){
@@ -222,7 +220,7 @@ public class SpiderWeb{
     }
     
     public void addSpot(String color, int strand){
-        if (!spotsMap.containsKey(color) && 1 <= strand && strand <= numberStrands){
+        if (!spotsMap.containsKey(color) && 1 <= strand && strand <= numberStrands  && !strands.get(strand-1).hasSpot()){
             int spotRadius = Spot.size/2;
             double angle = strands.get(strand-1).getTetha1();
             Spot spot = new Spot(xPosition - spotRadius + (int) (largeStrand*Math.cos(angle)), yPosition - spotRadius - (int) (largeStrand*Math.sin(angle)),color, strand-1);
@@ -250,8 +248,13 @@ public class SpiderWeb{
     }
     
     public int spot(String color){
-        ok = true;
-        return (int) (spotsMap.get(color).getNumberStrand())+1;
+        int numberStrand = -500;
+        if(spotsMap.containsKey(color)){
+            ok = true;
+            numberStrand = (spotsMap.get(color).getNumberStrand())+1;
+        }
+        else{ok = false;}
+        return numberStrand;
     }
     
     public String[] spots(){
@@ -553,6 +556,7 @@ public class SpiderWeb{
                     unUsedBridges.add(bridge.getColor());
                 }
         }
+        ok = true;
         return unUsedBridges.toArray(new String[0]);
     }
 }
