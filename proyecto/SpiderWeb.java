@@ -7,8 +7,13 @@ import java.util.Collections;
 import java.util.Scanner;
 
 /**
- * Write a description of class SpiderWeb here.
- *
+ * Represents a spider web consisting of strands, bridges, spots, and a spider.
+ * Strands form the main structure of the web, bridges connect strands, spots mark specific locations,
+ * and a spider can traverse the web.
+ * 
+ * The SpiderWeb class provides methods for managing the web, including adding and removing bridges and spots,
+ * controlling the spider's movement, and visualizing the web.
+ * 
  * @author (your name)
  * @version (a version number or a date)
  */
@@ -40,7 +45,10 @@ public class SpiderWeb{
     private String[] availableColors = {};
     
     /**
-     * Constructor for objects of class SpiderWeb
+     * Constructor for objects of class SpiderWeb with a specified number of strands and radius.
+     * 
+     * @param strands the number of strands in the web
+     * @param radio the radius of the strands
      */
     public SpiderWeb(int strands, int radio) {
         numberStrands = strands;
@@ -58,6 +66,13 @@ public class SpiderWeb{
         ok = true;
     }
     
+    /**
+     * Constructor for objects of class SpiderWeb with a specified number of strands, a favorite color, and bridge information.
+     * 
+     * @param strands the number of strands in the web
+     * @param favorite a favorite color for the bridges
+     * @param bridges a 2D array containing bridge information
+     */
     public SpiderWeb(int strands, int favorite, int[][] bridges){
         numberStrands = strands;
         largeStrand = 120;
@@ -80,6 +95,13 @@ public class SpiderWeb{
         }
     }
     
+    /**
+     * Adds a bridge to the spider web.
+     * 
+     * @param color the color of the bridge
+     * @param distance the distance between the strands connected by the bridge
+     * @param firstStrand the index of the first strand connected by the bridge
+     */
     public void addBridge(String color, int distance, int firstStrand){
         if(1 <= firstStrand && firstStrand <= numberStrands && distance <= largeStrand && !(bridgesColors.contains(color)) && numberStrands>1 && !color.equals("green")){
             int strand1 = firstStrand-1;
@@ -102,6 +124,11 @@ public class SpiderWeb{
         }
     }
     
+    /**
+     * Removes a bridge from the spider web.
+     * 
+     * @param color the color of the bridge to be removed
+     */
     public void delBridge(String color) {
         if (bridgesColors.contains(color)){
             int index = bridgesColors.indexOf(color);
@@ -130,7 +157,13 @@ public class SpiderWeb{
         }
         return bridgeRadius;
     }
-
+    
+    /**
+     * Relocates a bridge to a new distance between strands.
+     * 
+     * @param color the color of the bridge to be relocated
+     * @param distance the new distance between strands
+     */
     public void relocateBridge(String color, int distance){
         if (bridgesColors.contains(color) && distance <= largeStrand && distance > 0){
             int index = bridgesColors.indexOf(color);
@@ -142,6 +175,12 @@ public class SpiderWeb{
         else{ok = false;}
     }
     
+    /**
+     * Returns information about a bridge of the specified color.
+     * 
+     * @param color the color of the bridge
+     * @return an array containing the index of the first strand and the distance of the bridge
+     */
     public int[] bridge(String color){
         ArrayList<Integer> bridgeAnswer = new ArrayList<>();
         if (bridgesColors.contains(color)){
@@ -162,11 +201,19 @@ public class SpiderWeb{
         return bridgeAnswer.stream().mapToInt(Integer::intValue).toArray();
     }
     
+    /**
+     * Returns an array of colors representing the bridges in the spider web.
+     * 
+     * @return an array of bridge colors
+     */
     public String[] bridges(){
         ok = true;
         return bridgesColors.toArray(new String[0]);
     }
     
+    /**
+     * Makes the spider web visible.
+     */
     public void makeVisible(){
         if (!isVisible){
             for(Strand strand : strands){
@@ -190,6 +237,9 @@ public class SpiderWeb{
         ok = true;
     }
     
+    /**
+     * Makes the spider web invisible.
+     */
     public void makeInvisible(){
         if (isVisible){
             for(Strand strand : strands){
@@ -209,6 +259,11 @@ public class SpiderWeb{
         ok = true;
     }
     
+    /**
+     * Positions the spider on a specific strand.
+     * 
+     * @param strand the index of the target strand
+     */
     public void spiderSit(int strand){
         int numbStrand = strand - 1;
         if(0<= numbStrand && numbStrand <= numberStrands-1){
@@ -219,6 +274,12 @@ public class SpiderWeb{
         else{ok = false;}
     }
     
+    /**
+     * Adds a spot to the spider web on a specified strand.
+     * 
+     * @param color the color of the spot
+     * @param strand the index of the target strand
+     */
     public void addSpot(String color, int strand){
         if (!spotsMap.containsKey(color) && 1 <= strand && strand <= numberStrands  && !strands.get(strand-1).hasSpot()){
             int spotRadius = Spot.size/2;
@@ -232,6 +293,11 @@ public class SpiderWeb{
         else{ok = false;}
     }
     
+    /**
+     * Removes a spot from the spider web.
+     * 
+     * @param color the color of the spot to be removed
+     */
     public void delSpot(String color) {
         if (spotsMap.containsKey(color)) {
             spotsMap.get(color).makeInvisible();
@@ -247,6 +313,12 @@ public class SpiderWeb{
         else {ok = false;}
     }
     
+    /**
+     * Returns the index of the strand where a spot of the specified color is located.
+     * 
+     * @param color the color of the spot
+     * @return the index of the strand containing the spot, or -500 if the spot is not found
+     */
     public int spot(String color){
         int numberStrand = -500;
         if(spotsMap.containsKey(color)){
@@ -257,6 +329,11 @@ public class SpiderWeb{
         return numberStrand;
     }
     
+    /**
+     * Returns an array of colors representing the spots in the spider web.
+     * 
+     * @return an array of spot colors
+     */
     public String[] spots(){
         ok = true;
         return spotsMap.keySet().toArray(new String[0]);
@@ -347,6 +424,11 @@ public class SpiderWeb{
         spiderMoveToFinalPosition(false);
     }
     
+    /**
+     * Moves the spider forward or backward along the strands.
+     * 
+     * @param advance true to move the spider forward, false to move it backward
+     */
     public void spiderWalk(boolean advance){
         makeInvisibleLastPath();
         if (advance){
@@ -394,6 +476,11 @@ public class SpiderWeb{
         }
     }
     
+    /**
+     * Returns information about the last path taken by the spider.
+     * 
+     * @return an array containing the index of the last two strands and the corresponding radii
+     */
     public int[] spiderLastPath() {
         ArrayList<Integer> spiderLastPath = new ArrayList<>();
         if (spiderTrackerStrands.size() >= 2 && spiderTrackerRadius.size() >= 2) {
@@ -411,15 +498,24 @@ public class SpiderWeb{
         return spiderLastPath.stream().mapToInt(Integer::intValue).toArray();
     }
     
+    /**
+     * Finishes operations on the spider web.
+     */
     public void finish(){
         makeInvisible();
         isVisible = true;
     }
     
+    /**
+     * Checks if the last operation on the spider web was successful.
+     * 
+     * @return true if the last operation was successful, false otherwise
+     */
     public boolean ok(){
         return ok;
     }
     
+    // Helper method for printing information about bridges
     private void printBridgesInfo() {
         for (Map.Entry<Integer, Map<Integer, Bridge>> entry : strandsBridgesMap.entrySet()) {
             int strandNumber = entry.getKey();
@@ -438,6 +534,7 @@ public class SpiderWeb{
         }
     }
     
+    // Helper method for loading a predefined spider web
     public void cargarTelaraña(){
         addBridge("blue",90,1);
         addBridge("red",40,3);
@@ -489,7 +586,8 @@ public class SpiderWeb{
         }
         ok = true;
     }
-
+    
+    // Helper method for reorganizing strands after adding a new one
     private void reOrganizeStrands(){
         double newangle = 360/numberStrands;
         Strand strand = new Strand(xPosition, yPosition, largeStrand, 0, "black");
@@ -505,6 +603,7 @@ public class SpiderWeb{
         }
     }
     
+    // Helper method for reorganizing bridges after adding a new strand
     private void reOrganizeBridges(){
         for (int a = 0; a < bridges.size(); a++){
             Bridge bridge = bridges.get(a);
@@ -519,6 +618,7 @@ public class SpiderWeb{
         }
     }
     
+    // Helper method for reorganizing spots after adding a new strand
     private void reOrganizeSpots(){
         ArrayList<Spot> llaves = new ArrayList<>(spotsMap.values());
         for (Spot valor : llaves) {
@@ -529,14 +629,29 @@ public class SpiderWeb{
         }
     }
     
+    /**
+     * Returns the radius of the strands in the spider web.
+     * 
+     * @return the radius of the strands
+     */
     public int getLargeStrand(){
         return largeStrand;
     }
     
+    /**
+     * Returns the number of strands in the spider web.
+     * 
+     * @return the number of strands
+     */
     public int getNumberStrands(){
         return numberStrands;
     }
     
+    /**
+     * Returns an array of colors representing the reachable spots in the spider web.
+     * 
+     * @return an array of reachable spot colors
+     */
     public String[] reachableSpots(){
         reachableSpots = new ArrayList<>();
         for(int i = 0; i < strands.size(); i++){
@@ -548,6 +663,11 @@ public class SpiderWeb{
         return reachableSpots.toArray(new String[0]);
     }
     
+    /**
+     * Returns an array of colors representing the unused bridges in the spider web.
+     * 
+     * @return an array of unused bridge colors
+     */
     public String[] unUsedBridges(){
         ArrayList<String> unUsedBridges = new ArrayList<>();
         for(int i = 0; i < bridges.size() ; i++){

@@ -1,12 +1,13 @@
-
 /**
- * Write a description of class Spot here.
+ * Represents a spot on a canvas.
  * 
- * @author (your name) 
+ * A spot is a small circle with a specified color, size, and position.
+ * It can be made visible or invisible, and its position and color can be changed.
+ * 
+ * @author (your name)
  * @version (a version number or a date)
  */
-public class Spot
-{
+public class Spot {
     public static int size = 16;
     private Circle spotCircle;
     private int xPosition;
@@ -16,9 +17,14 @@ public class Spot
     private boolean isVisible;
 
     /**
-     * Constructor for objects of class Spot
+     * Constructor for objects of class Spot.
+     * 
+     * @param xPos the x-coordinate of the spot
+     * @param yPos the y-coordinate of the spot
+     * @param color1 the color of the spot
+     * @param numbStrand the number of the strand associated with the spot
      */
-    public Spot(int xPos, int yPos, String color1, int numbStrand){
+    public Spot(int xPos, int yPos, String color1, int numbStrand) {
         spotCircle = new Circle();
         spotCircle.changeColor(color1);
         spotCircle.changeSize(size);
@@ -29,47 +35,94 @@ public class Spot
         numberStrand = numbStrand;
     }
     
-    public void changeColor(String color){
+    /**
+     * Changes the color of the spot.
+     * 
+     * @param color the new color of the spot
+     */
+    public void changeColor(String color) {
         spotCircle.changeColor(color);
     }
     
-    public void makeVisible(){
+    /**
+     * Makes the spot visible on the canvas.
+     */
+    public void makeVisible() {
         spotCircle.makeVisible();
         isVisible = true;
     }
     
-    public void makeInvisible(){
+    /**
+     * Makes the spot invisible on the canvas.
+     */
+    public void makeInvisible() {
         spotCircle.makeInvisible();
         isVisible = false;
     }
     
-    public void setPosition(int xPos, int yPos){
+    /**
+     * Sets the position of the spot to the specified coordinates.
+     * 
+     * @param xPos the new x-coordinate of the spot
+     * @param yPos the new y-coordinate of the spot
+     */
+    public void setPosition(int xPos, int yPos) {
         xPosition = xPos;
         yPosition = yPos;
         spotCircle.setPosition(xPos, yPos, true);
     }
     
-    public String getColor(){
+    /**
+     * Retrieves the color of the spot.
+     * 
+     * @return the color of the spot
+     */
+    public String getColor() {
         return color;
     }
     
-    public int getNumberStrand(){
+    /**
+     * Retrieves the number of the strand associated with the spot.
+     * 
+     * @return the number of the strand associated with the spot
+     */
+    public int getNumberStrand() {
         return numberStrand;
     }
     
-    public int getRaius(){
+    /**
+     * Retrieves the radius of the spot.
+     * 
+     * @return the radius of the spot
+     */
+    public int getRaius() {
         return spotCircle.getRadius();
     }
     
-    public int getSize(){
+    /**
+     * Retrieves the size of the spot.
+     * 
+     * @return the size of the spot
+     */
+    public int getSize() {
         return size;
     }
     
-    public int getXPosition(){
+    /**
+     * Retrieves the x-coordinate of the spot.
+     * 
+     * @return the x-coordinate of the spot
+     */
+    public int getXPosition() {
         return xPosition;
     }
     
-    public int getYPosition(){
+    /**
+     * Retrieves the y-coordinate of the spot.
+     * 
+     * @return the y-coordinate of the spot
+     */
+    public int getYPosition() {
         return yPosition;
     }
 }
