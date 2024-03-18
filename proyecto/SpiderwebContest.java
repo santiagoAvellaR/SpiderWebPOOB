@@ -1,9 +1,12 @@
 import java.util.*;
 
 /**
- * Write a description of class SpiderwebContest here.
+ * The SpiderwebContest class represents a contest involving spider webs.
+ * It allows simulating and solving spider web-related problems.
  * 
- * @author (your name) 
+ * This class manages multiple SpiderWeb instances.
+ * 
+ * @author (your name)
  * @version (a version number or a date)
  */
 public class SpiderwebContest{
@@ -11,12 +14,18 @@ public class SpiderwebContest{
     private ArrayList<SpiderWeb> spiderWebs;
     
     /**
-     * Constructor for objects of class SpiderwebContest
+     * Constructs a SpiderwebContest object.
      */
     public SpiderwebContest(){
         spiderWebs = new ArrayList<>();
     }
-
+    
+    /**
+     * Updates the minimum number of bridges needed for each strand based on the given bridges and a specific strand.
+     * 
+     * @param bridges the array containing information about bridges
+     * @param strand the index of the strand to update
+     */
     private void updateBridges(int[] bridges, int strand) {
         int len = bridges.length;
         bridges[strand] = bridges[(strand + 1) % len];
@@ -34,7 +43,15 @@ public class SpiderwebContest{
             }
         }
     }
-
+    
+    /**
+     * Solves the spider web problem for a given number of strands, a favorite strand, and bridge configurations.
+     * 
+     * @param strands the total number of strands in the spider web
+     * @param favorite the index of the spider's favorite strand
+     * @param bridges the 2D array containing information about bridges
+     * @return an array representing the minimum number of bridges needed for each strand
+     */
     public int[] solve(int strands, int favorite, int[][] bridges) {
         int m = strands;
         int s = favorite;
@@ -52,6 +69,13 @@ public class SpiderwebContest{
         return minimunNumberOfBridges;
     }
     
+    /**
+     * Simulates a spider web contest using the provided parameters.
+     * 
+     * @param strands the total number of strands in the spider web
+     * @param favorite the index of the spider's favorite strand
+     * @param bridges the 2D array containing information about bridges
+     */
     public void simulate(int strands, int favorite, int[][] bridges){
         int[] minimunBridges = solve(strands, favorite, bridges);
         if(spiderWebs.size()>=1){spiderWebs.get(spiderWebs.size() - 1).makeInvisible();}

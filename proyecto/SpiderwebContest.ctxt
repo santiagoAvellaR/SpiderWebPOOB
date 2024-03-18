@@ -1,13 +1,16 @@
 #BlueJ class context
 comment0.target=SpiderwebContest
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ SpiderwebContest\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ The\ SpiderwebContest\ class\ represents\ a\ contest\ involving\ spider\ webs.\r\n\ It\ allows\ simulating\ and\ solving\ spider\ web-related\ problems.\r\n\ \r\n\ This\ class\ manages\ multiple\ SpiderWeb\ instances.\r\n\ \r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=
 comment1.target=SpiderwebContest()
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ SpiderwebContest\r\n
+comment1.text=\r\n\ Constructs\ a\ SpiderwebContest\ object.\r\n
 comment2.params=bridges\ strand
 comment2.target=void\ updateBridges(int[],\ int)
+comment2.text=\r\n\ Updates\ the\ minimum\ number\ of\ bridges\ needed\ for\ each\ strand\ based\ on\ the\ given\ bridges\ and\ a\ specific\ strand.\r\n\ \r\n\ @param\ bridges\ the\ array\ containing\ information\ about\ bridges\r\n\ @param\ strand\ the\ index\ of\ the\ strand\ to\ update\r\n
 comment3.params=strands\ favorite\ bridges
 comment3.target=int[]\ solve(int,\ int,\ int[][])
+comment3.text=\r\n\ Solves\ the\ spider\ web\ problem\ for\ a\ given\ number\ of\ strands,\ a\ favorite\ strand,\ and\ bridge\ configurations.\r\n\ \r\n\ @param\ strands\ the\ total\ number\ of\ strands\ in\ the\ spider\ web\r\n\ @param\ favorite\ the\ index\ of\ the\ spider's\ favorite\ strand\r\n\ @param\ bridges\ the\ 2D\ array\ containing\ information\ about\ bridges\r\n\ @return\ an\ array\ representing\ the\ minimum\ number\ of\ bridges\ needed\ for\ each\ strand\r\n
 comment4.params=strands\ favorite\ bridges
 comment4.target=void\ simulate(int,\ int,\ int[][])
+comment4.text=\r\n\ Simulates\ a\ spider\ web\ contest\ using\ the\ provided\ parameters.\r\n\ \r\n\ @param\ strands\ the\ total\ number\ of\ strands\ in\ the\ spider\ web\r\n\ @param\ favorite\ the\ index\ of\ the\ spider's\ favorite\ strand\r\n\ @param\ bridges\ the\ 2D\ array\ containing\ information\ about\ bridges\r\n
 numComments=5

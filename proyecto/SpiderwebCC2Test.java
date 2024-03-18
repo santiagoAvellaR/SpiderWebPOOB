@@ -4,10 +4,14 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+
 /**
  * The test class SpiderWebTest.
  *
- * @author  (your name)
+ * This class contains unit tests for the SpiderWeb class.
+ * It tests various functionalities such as adding bridges, spots, deleting bridges and spots, etc.
+ * 
+ * @author (your name)
  * @version (a version number or a date)
  */
 public class SpiderwebCC2Test{
@@ -28,6 +32,9 @@ public class SpiderwebCC2Test{
         spiderWebProof.addSpot("orange", 7);//añade un spot
     }
     
+    /**
+     * Tests the addition of a bridge to the spider web.
+     */
     @Test
     public void shouldAddBridge(){
         String[] expectedAnswer = {"red", "yellow", "magenta", "cyan"};
@@ -46,6 +53,9 @@ public class SpiderwebCC2Test{
         assertArrayEquals(spiderWebProof.bridges(),expectedAnswer3);
     }
     
+    /**
+     * Tests scenarios where a bridge should not be added to the spider web.
+     */
     @Test
     public void shouldNotAddBridge(){
         spiderWebProof.addBridge("red",201,1);//Crear un puente mas grande lo debido, no deberia dejar por lo que la ultima accion va a ser falsa
@@ -66,6 +76,9 @@ public class SpiderwebCC2Test{
         assertFalse(spiderWebProof.ok());
     }
     
+    /**
+     * Tests the deletion of a bridge from the spider web.
+     */
     @Test
     public void shouldDeleteBridge(){
         spiderWebProof.delBridge("red"); //eliminar el puente existente
@@ -78,6 +91,9 @@ public class SpiderwebCC2Test{
         assertTrue(spiderWebProof.ok());
     }
     
+    /**
+     * Tests scenarios where a bridge should not be deleted from the spider web.
+     */
     @Test
     public void shouldNotDeleteBridge(){
         spiderWebProof.delBridge("gray"); //eliminar el puente inexistente
@@ -86,10 +102,16 @@ public class SpiderwebCC2Test{
         assertFalse(spiderWebProof.ok());
     }
     
+    /**
+     * Tests the relocation of a bridge within the spider web.
+     */
     @Test
     public void shouldRelocateBridge(){
     }
     
+    /**
+     * Tests scenarios where a bridge should not be relocated within the spider web.
+     */
     @Test
     public void shouldNotRelocateBridge(){
         spiderWebProof.relocateBridge("gray", 3); //reubicar un puente inexistente
@@ -98,6 +120,9 @@ public class SpiderwebCC2Test{
         assertFalse(spiderWebProof.ok());
     }
     
+    /**
+     * Tests the retrieval of the strand and radius of a specific bridge.
+     */
     @Test
     public void shouldReturnTheStrandAndRadiusOfABridge(){
         int[] expectedAnswer = {1,100};
@@ -113,6 +138,9 @@ public class SpiderwebCC2Test{
         assertArrayEquals(spiderWebProof.bridge("cyan"), expectedAnswer);//indica en que hilo nace un puente y su distancia
     }
     
+    /**
+     * Tests scenarios where the strand and radius of a bridge should not be retrieved.
+     */
     @Test
     public void shouldNotReturnTheStrandAndRadiusOfABridge(){
         int[] expectedAnswer = {};
@@ -122,12 +150,18 @@ public class SpiderwebCC2Test{
         assertFalse(spiderWebProof.ok());
     }
     
+    /**
+     * Tests the retrieval of all bridge colors in the spider web.
+     */
     @Test
     public void shouldReturnTheColorOfAllTheBridges(){
         String[] expectedAnswer = {"red", "yellow", "magenta", "cyan"};
         assertArrayEquals(spiderWebProof.bridges(),expectedAnswer);
     }
     
+    /**
+     * Tests the addition of a spot to the spider web.
+     */
     @Test
     public void shouldAddASpot(){
         spiderWebProof.addSpot("pink", 2);//añade un spot
@@ -141,6 +175,9 @@ public class SpiderwebCC2Test{
         
     }
     
+    /**
+     * Tests scenarios where a spot should not be added to the spider web.
+     */
     @Test
     public void shouldNotAddASpot(){
         spiderWebProof.addSpot("red",15);//añade un spot a un hilo inexistente, ultima accion va a ser fasa
@@ -153,6 +190,9 @@ public class SpiderwebCC2Test{
         assertFalse(spiderWebProof.ok());
     }
     
+    /**
+     * Tests the deletion of a spot from the spider web.
+     */
     @Test
     public void shouldDeleteASpot(){
         spiderWebProof.delSpot("blue");//elimina un spot
@@ -165,6 +205,9 @@ public class SpiderwebCC2Test{
         assertTrue(spiderWebProof.ok());
     }
     
+    /**
+     * Tests scenarios where a spot should not be deleted from the spider web.
+     */
     @Test
     public void shouldNotDeleteASpot(){
         spiderWebProof.delSpot("cyan");//elimina un spot inexistente
@@ -177,6 +220,9 @@ public class SpiderwebCC2Test{
         assertFalse(spiderWebProof.ok());
     }
     
+    /**
+     * Tests the retrieval of the strand where a specific spot is located.
+     */
     @Test
     public void shouldReturnTheStrandOfTheSpot(){
         assertEquals(spiderWebProof.spot("blue"), 1);//hilo en el que esta un spot
@@ -189,6 +235,9 @@ public class SpiderwebCC2Test{
         assertTrue(spiderWebProof.ok());
     }
     
+    /**
+     * Tests scenarios where the strand of a spot should not be retrieved.
+     */
     @Test
     public void shouldNotReturnTheStrandOfTheSpot(){
         assertEquals(spiderWebProof.spot("gray"), -500);//hilo en el que esta un spot
@@ -197,11 +246,17 @@ public class SpiderwebCC2Test{
         assertFalse(spiderWebProof.ok());
     }
     
+    /**
+     * Tests the retrieval of all spot colors in the spider web.
+     */
     public void shouldReturnTheColorsOfTheSpot(){
         String[] expectedAnswer = {"blue", "green", "red", "orange"};
         assertArrayEquals(spiderWebProof.spots(),expectedAnswer);
     }
     
+    /**
+     * Tests the addition of a strand to the spider web.
+     */
     public void shouldAddAStrand(){
         assertEquals(spiderWebProof.getNumberStrands(), 10);
         spiderWebProof.addStrand();
@@ -212,6 +267,9 @@ public class SpiderwebCC2Test{
         assertEquals(spiderWebProof.getNumberStrands(), 12);
     }
     
+    /**
+     * Tests the enlargement of the spider web.
+     */
     @Test
     public void shouldEnlargeSpiderWeb(){
         assertEquals(spiderWebProof.getLargeStrand(), 200);
@@ -226,6 +284,9 @@ public class SpiderwebCC2Test{
         assertEquals(spiderWebProof.getLargeStrand(), 400);
     }
     
+    /**
+     * Tests scenarios where the spider web should not be enlarged.
+     */
     @Test
     public void shouldNotEnlargeSpiderWeb(){
         spiderWebProof.enlarge(-2);//al ser un numero negativo no debe cambiar el valor
@@ -236,6 +297,9 @@ public class SpiderwebCC2Test{
         assertEquals(spiderWebProof.getLargeStrand(), 200);
     }
     
+    /**
+     * Tests the retrieval of unused bridges in the spider web.
+     */
     public void shouldReturnTheUnUsedBridges(){
         String[] expectedAnswer = {};
         assertArrayEquals(spiderWebProof.unUsedBridges(), expectedAnswer);
