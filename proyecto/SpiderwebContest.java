@@ -26,21 +26,23 @@ public class SpiderwebContest{
      * @param bridges the array containing information about bridges
      * @param strand the index of the strand to update
      */
-    private void updateBridges(int[] bridges, int strand) {
-        int len = bridges.length;
-        bridges[strand] = bridges[(strand + 1) % len];
-        if (bridges[strand] < bridges[(strand + 1) % len]) {
-            for (int i = 0; i < len; i++) {
-                int pos2 = (strand - i) >= 0 ? (strand - i) : (len - (i - strand));
-                int pos = (pos2 == 0) ? len - 1 : pos2 - 1;
-                bridges[pos2] = Math.min(Math.min(bridges[(pos2 + 1) % len] + 1, bridges[pos] + 1), bridges[pos2]);
+    private void updateMinimunNumberOfBridges(int[] strands, int strand, int size){
+        int copy = strands[(strand+1)%size];
+        strands[(strand+1)%size] = strands[strand];
+        strands[strand] = copy;
+        if(strands[strand] < strands[(strand+1)%size]){
+            for(int i = 0; i < size; i++){
+                int pos2 = strand>=i?strand-i:size-(i-strand);
+                int pos = pos2==0?size-1:pos2-1;
+                strands[pos2]=Math.min(strands[(pos2+1)%size]+1,Math.min(strands[pos]+1, strands[pos2]));
             }
-        } else if (bridges[strand] > bridges[(strand + 1) % len]) {
-            for (int i = 0; i < len; i++) {
-                int pos2 = (strand + i) % len;
-                int pos = (pos2 == 0) ? len - 1 : pos2 - 1;
-                bridges[pos2] = Math.min(Math.min(bridges[(pos2 + 1) % len] + 1, bridges[pos] + 1), bridges[pos2]);
-            }
+        }
+        else if(strands[strand] > strands[(strand+1)%size]){
+            for(int i = 0; i < size; i++){
+                int pos2 = (strand+i)%size;
+                int pos = pos2==0?size-1:pos2-1;
+                strands[pos2]=Math.min(strands[(pos2+1)%size]+1,Math.min(strands[pos]+1, strands[pos2]));
+            }   
         }
     }
     
@@ -52,21 +54,19 @@ public class SpiderwebContest{
      * @param bridges the 2D array containing information about bridges
      * @return an array representing the minimum number of bridges needed for each strand
      */
-    public int[] solve(int strands, int favorite, int[][] bridges) {
-        int m = strands;
-        int s = favorite;
-        int[] minimunNumberOfBridges = new int[m];
-        int pos = s - 1;
-        for (int i = -1; i < m - 1; i++) {
-            minimunNumberOfBridges[pos] = Math.min(i + 1, m - i - 1);
-            pos = (pos + 1) % m;
+    public int[] solve(int strands, int favorite, int[][] bridges){     
+        Comparator<int[]> comparator = (a,b)->b[0]-a[0];
+        Arrays.sort(bridges,comparator);
+        int[] result = new int[strands];
+        int pos = favorite -1;
+        for(int i= -1; i < strands-1;i++){
+            result[pos]=Math.min(i+1,strands-i-1);
+            pos = (pos+1)%strands;
         }
-
-        Arrays.sort(bridges, (a, b) -> Integer.compare(b[0], a[0]));
-        for (int i = 0; i < bridges.length; i++) {
-            updateBridges(minimunNumberOfBridges, bridges[i][1] - 1);
+        for(int[] bridge : bridges){
+           updateMinimunNumberOfBridges(result,bridge[1]-1,strands);
         }
-        return minimunNumberOfBridges;
+        return result;
     }
     
     /**

@@ -64,9 +64,9 @@ public class SpiderwebContestCTest{
         int favorite = 6;
         int[][] bridges = {
             {2, 1},
-            {4, 6},
-            {6, 8},
-            {8, 10},
+            {4, 3},
+            {6, 3},
+            {8, 7},
             {10, 5}
         };
 
