@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Polygons
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Polygon\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=Polygons()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Polygon\r\n
+comment2.params=newHeight\ newWidth
+comment2.target=void\ changeSize(int,\ int)
+comment2.text=\r\n\ Change\ the\ size\ to\ the\ new\ size\r\n\ @param\ newHeight\ the\ new\ height\ in\ pixels.\ newHeight\ must\ be\ >\=0.\r\n\ @param\ newWidht\ the\ new\ width\ in\ pixels.\ newWidth\ must\ be\ >\=0.\r\n
+comment3.params=
+comment3.target=int\ getWidth()
+comment3.text=\r\n\ Returns\ the\ width\ of\ the\ polygon.\r\n\ \r\n\ @return\ the\ width\ of\ the\ polygon\r\n
+comment4.params=
+comment4.target=int\ getHeight()
+comment4.text=\r\n\ Returns\ the\ height\ of\ the\ polygon.\r\n\ \r\n\ @return\ the\ height\ of\ the\ polygon\r\n
+numComments=5
