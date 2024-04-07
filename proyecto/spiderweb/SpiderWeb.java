@@ -363,6 +363,42 @@ public class SpiderWeb{
     }
     
     /**
+     * Adds a spot to the spider web on a specified strand.
+     * 
+     * @param type the color of the spot
+     * @param color the color of the spot
+     * @param strand the index of the target strand
+     */
+    public void addSpot(String type, String color, int strand){
+        if (!spotsMap.containsKey(color) && 1 <= strand && strand <= numberStrands  && !strands.get(strand-1).hasSpot()){
+            int spotRadius = Spot.size/2;
+            double angle = strands.get(strand-1).getTetha1();
+            boolean isAValidType = false;
+            Spot spot = null;
+            if(type.equals("normal")){
+                spot = new Spot(xPosition - spotRadius + (int) (largeStrand*Math.cos(angle)), yPosition - spotRadius - (int) (largeStrand*Math.sin(angle)),color, strand-1);
+                isAValidType = true;
+            }
+            else if(type.equals("bouncy")){
+                spot = new Bouncy(xPosition - spotRadius + (int) (largeStrand*Math.cos(angle)), yPosition - spotRadius - (int) (largeStrand*Math.sin(angle)),color, strand-1);
+                isAValidType = true;
+            }
+            else if(type.equals("killer")){
+                spot = new Killer(xPosition - spotRadius + (int) (largeStrand*Math.cos(angle)), yPosition - spotRadius - (int) (largeStrand*Math.sin(angle)),color, strand-1);
+                isAValidType = true;
+            }
+            if(isAValidType){
+                spotsMap.put(color, spot);
+                strands.get(strand-1).setHasSpot(true);
+                if (isVisible){spot.makeVisible();}
+                ok = true;
+            }
+            else{ok = false;}
+        }
+        else{ok = false;}
+    }
+    
+    /**
      * Removes a spot from the spider web.
      * 
      * @param color the color of the spot to be removed
