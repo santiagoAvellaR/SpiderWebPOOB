@@ -3252,3 +3252,19 @@ java.lang.NullPointerException: Cannot invoke "java.util.List.iterator()" becaus
 	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
 	at com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
 	at java.base/java.lang.Thread.run(Thread.java:833)
+====
+
+====
+BlueJ run started: Sat Apr 06 11:22:25 COT 2024
+BlueJ version 5.2.1
+Java version 17.0.4.1
+JavaFX version 20.0.1+2
+Virtual machine: OpenJDK 64-Bit Server VM 17.0.4.1+1 (Eclipse Adoptium)
+Running on: Windows 11 10.0 (amd64)
+Java Home: C:\Users\Asus\Downloads\bluej\jdk
+----
+Internal error: Unable to load frame labels file: C:\Users\Asus\Downloads\bluej\lib\spanish\frame-labels
+Opening project: C:\Users\Asus\Downloads\proyecto\SpiderWebPoob\proyecto
+1712420548200: Listening for JDWP connection on address: javadebug
+Connected to debug VM via dt_shmem transport...
+Communication with debug VM fully established.

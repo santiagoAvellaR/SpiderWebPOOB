@@ -69,10 +69,37 @@ public class Bridge {
      * 
      * @param nstrand the new index of the second strand
      */
+    public void setStrand1(int nstrand) {
+        strand1 = nstrand;
+    }
+    
+    /**
+     * Sets the index of the second strand connected to the bridge.
+     * 
+     * @param nstrand the new index of the second strand
+     */
     public void setStrand2(int nstrand) {
         strand2 = nstrand;
     }
-
+    
+    /**
+     * Gets the angle of rotation for the first end of the bridge.
+     * 
+     * @return the angle of rotation in degrees
+     */
+    public double getTetha1() {
+        return tetha1;
+    }
+    
+    /**
+     * Gets the angle of rotation for the second end of the bridge.
+     * 
+     * @return the angle of rotation in degrees
+     */
+    public double getTetha2() {
+        return tetha2;
+    }
+    
     /**
      * Sets the angle of rotation for the first end of the bridge.
      * 
@@ -95,8 +122,10 @@ public class Bridge {
      * Makes the bridge visible. If it was already visible, does nothing.
      */
     public void makeVisible() {
-        isVisible = true;
-        draw();
+        if (!isVisible) {
+            isVisible = true;
+            draw();
+        }
     }
     
     /**
@@ -128,24 +157,6 @@ public class Bridge {
             shapes.Canvas canvas = shapes.Canvas.getCanvas();
             canvas.erase(this);
         }
-    }
-    
-    /**
-     * Gets the angle of rotation for the first end of the bridge.
-     * 
-     * @return the angle of rotation in degrees
-     */
-    public double getTetha1() {
-        return tetha1;
-    }
-    
-    /**
-     * Gets the angle of rotation for the second end of the bridge.
-     * 
-     * @return the angle of rotation in degrees
-     */
-    public double getTetha2() {
-        return tetha2;
     }
     
     /**
