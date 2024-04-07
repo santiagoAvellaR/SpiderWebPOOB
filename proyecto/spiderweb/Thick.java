@@ -1,5 +1,6 @@
 package spiderweb;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Write a description of class Thick here.
@@ -14,9 +15,9 @@ public class Thick extends Bridge
     /**
      * Constructor for objects of class Thick
      */
-    public Thick(double angle1, double angle2, int xPos, int yPos, int rad, String color1, int str1, int str2, int thick){
+    public Thick(double angle1, double angle2, int xPos, int yPos, int rad, String color1, int str1, int str2){
         super(angle1, angle2, xPos, yPos, rad, color1, str1, str2);
-        this.thick = thick;
+        thick = getRandomNumberInRange(2,8);
         int i = 0;
         int extraThick = 1;
         while(i <= (int) (thick/2)){
@@ -63,5 +64,10 @@ public class Thick extends Bridge
     
     public int getThick(){
         return thick;
+    }
+    
+    private static int getRandomNumberInRange(int min, int max) {
+        Random random = new Random();
+        return random.nextInt((max - min) + 1) + min;
     }
 }
