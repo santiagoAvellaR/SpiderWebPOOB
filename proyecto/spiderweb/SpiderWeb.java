@@ -182,12 +182,12 @@ public class SpiderWeb{
     public void delBridge(String color) {
         if (bridgesColors.contains(color)){
             int index = bridgesColors.indexOf(color);
-            int numberFirstStrand = (int) (bridgesNumberStrand.get(index));
+            int numberFirstStrand = bridgesNumberStrand.get(index);
             int keyBridge = findKeyBridge(numberFirstStrand, color);
             if (keyBridge != -500){
                 if(!(bridges.get(index) instanceof Fixed)){
                     if(bridges.get(index) instanceof Transformer){
-                        changeSpot(bridges.get(index).getStrand1(), bridges.get(index).getColor());
+                        changeSpot(numberFirstStrand, bridges.get(index).getColor());
                     }
                     bridgesColors.remove(index);
                     bridgesNumberStrand.remove(index);
@@ -203,14 +203,13 @@ public class SpiderWeb{
     }
     
     private void changeSpot(int strand, String color){
-            if(!spotsMap.containsKey(color))
-            {
-                if(!(strands.get(strand).hasSpot()))
-                {
-                     addSpot(color, strand);       
-                }
+        if(!spotsMap.containsKey(color)){
+            strand = strand == numberStrands  ? strand: strand+1;  
+            if(!(strands.get(strand-1).hasSpot())){
+                 addSpot(color, strand);       
             }
         }
+    }
     
     private int findKeyBridge(int numberFirstStrand, String color){
         int bridgeRadius = -500;
@@ -338,6 +337,8 @@ public class SpiderWeb{
             spider.rotate(strands.get(numbStrand).getTetha1());
             spider.setNumberStrand(numbStrand);
             spider.setPosition(xPosition-8, yPosition-8);
+            spider.setIsCentered(true);
+            spider.setRadiusFromCenter(0);
             ok = true;
         }
         else{ok = false;}
@@ -406,13 +407,9 @@ public class SpiderWeb{
     public void delSpot(String color) {
         if (spotsMap.containsKey(color)) {
             spotsMap.get(color).makeInvisible();
+            int numberStrand = spotsMap.get(color).getNumberStrand();
             spotsMap.remove(color);
-            for (Strand strand : strands){
-                if(strand.getColor().equals(color)){
-                    strand.setHasSpot(false);
-                    break;
-                }
-            }
+            strands.get(numberStrand).setHasSpot(false);
             ok = true;
         }
         else {ok = false;}
@@ -447,16 +444,20 @@ public class SpiderWeb{
     private void spiderWalksForward(int startStrand){
         boolean canKeepAdvancing = true;
         int actualStrand = startStrand;
+        spiderTrackerRadius.add(0);
+        spiderTrackerStrands.add(startStrand);
         while(canKeepAdvancing){
             List<Integer> bridgeKeys = new ArrayList<>(strandsBridgesMap.get(actualStrand).keySet());
             Collections.sort(bridgeKeys);
+            System.out.print("los puentes disponibles en el hilo " + (actualStrand+1) + " son: ");
+            System.out.println(bridgeKeys);
             if(bridgeKeys.size() > 0){
                 for(Integer bridgeKey : bridgeKeys){
                     if(bridgeKey > spider.getRadiusFromCenter()){
-                        boolean clockWise = strandsBridgesMap.get(actualStrand).get(bridgeKey).getStrand1() > actualStrand;
-                        double newAngle = clockWise?strandsBridgesMap.get(actualStrand).get(bridgeKey).getTetha1():strandsBridgesMap.get(actualStrand).get(bridgeKey).getTetha2();
-                        int newStrand = clockWise?strandsBridgesMap.get(actualStrand).get(bridgeKey).getStrand1():strandsBridgesMap.get(actualStrand).get(bridgeKey).getStrand2();
-                        String color = strandsBridgesMap.get(actualStrand).get(bridgeKey).getColor();
+                        Bridge bridge = strandsBridgesMap.get(actualStrand).get(bridgeKey);
+                        double newAngle = spider.getVisionAngle()!=bridge.getTetha1()?bridge.getTetha1():bridge.getTetha2();
+                        String color = bridge.getColor();
+                        int newStrand = actualStrand == bridge.getStrand1()?bridge.getStrand2():bridge.getStrand1();
                         spiderMoveAndCross(bridgeKey, newAngle, newStrand, color);
                         actualStrand = newStrand;
                         break;
@@ -472,34 +473,37 @@ public class SpiderWeb{
     private void mobileActionWhenSpiderCross(int radius, int initialStrand, int finalStrand){
         Bridge bridge = strandsBridgesMap.get(initialStrand).get(radius);
         boolean clockWise = initialStrand > finalStrand;
+        int nextToFinalStrand;
+        boolean mobileAct = false;
+        Mobile newBridge = null;
         if(clockWise){
-            int nextToFinalStrand = finalStrand-1>0?finalStrand-1:numberStrands-1;
+            nextToFinalStrand = finalStrand-1>0?finalStrand-1:numberStrands-1;
             if(!(strandsBridgesMap.get(nextToFinalStrand).containsKey((int) (radius*1.20)))){
                 delBridge(bridge.getColor());
-                Mobile newBridge = new Mobile(strands.get(finalStrand).getTetha1(), strands.get(nextToFinalStrand).getTetha1(), xPosition, yPosition, (int) (radius*1.20), bridge.getColor(), finalStrand, nextToFinalStrand);
-                if(isVisible){newBridge.makeVisible();}
-                strandsBridgesMap.get(finalStrand).put(radius, newBridge);
-                strandsBridgesMap.get(nextToFinalStrand).put(radius, newBridge);
-                bridgesColors.add(bridge.getColor());
-                bridgesNumberStrand.add(finalStrand);
-                bridges.add(newBridge);
+                newBridge = new Mobile(strands.get(finalStrand).getTetha1(), strands.get(nextToFinalStrand).getTetha1(), xPosition, yPosition, (int) (radius*1.20), bridge.getColor(), finalStrand, nextToFinalStrand);
+                mobileAct = true;
             }
         }
         else{
+            nextToFinalStrand = (finalStrand+1)%numberStrands;
             if(!(strandsBridgesMap.get((finalStrand+1)%numberStrands).containsKey((int) (radius*1.20)))){
                 delBridge(bridge.getColor());
-                Mobile newBridge = new Mobile(strands.get(finalStrand).getTetha1(), strands.get((finalStrand+1)%numberStrands).getTetha1(), xPosition, yPosition, (int) (radius*1.20), bridge.getColor(), finalStrand, (finalStrand+1)%numberStrands);
-                if(isVisible){newBridge.makeVisible();}
-                strandsBridgesMap.get(finalStrand).put(radius, newBridge);
-                strandsBridgesMap.get((finalStrand+1)%numberStrands).put(radius, newBridge);
-                bridgesColors.add(bridge.getColor());
-                bridgesNumberStrand.add(finalStrand);
-                bridges.add(newBridge);
+                newBridge = new Mobile(strands.get(finalStrand).getTetha1(), strands.get(nextToFinalStrand).getTetha1(), xPosition, yPosition, (int) (radius*1.20), bridge.getColor(), finalStrand, nextToFinalStrand);
+                mobileAct = true;
             }
+        }
+        if(mobileAct){
+            if(isVisible){newBridge.makeVisible();}
+            strandsBridgesMap.get(finalStrand).put(radius, newBridge);
+            strandsBridgesMap.get(nextToFinalStrand).put(radius, newBridge);
+            bridgesColors.add(bridge.getColor());
+            bridgesNumberStrand.add(finalStrand);
+            bridges.add(newBridge);
         }
     }
     
     private void validateBridgeActionWhenSpiderCrossIt(int radius, int initialStrand, int finalStrand){
+        System.out.println("radio : " + radius + " initialStrand: " + initialStrand + " finalStrand: " + finalStrand);
         Bridge bridge = strandsBridgesMap.get(initialStrand).get(radius);
         if (bridge instanceof Mobile){
             mobileActionWhenSpiderCross(radius, initialStrand, finalStrand);
@@ -523,7 +527,7 @@ public class SpiderWeb{
         spiderTrackerRadius.add(radius);
         int initialStrand = spider.getNumberStrand();
         spiderTrackerStrands.add(initialStrand);
-        spider.crossTheBridge(newAngle, newStrand-1);
+        spider.crossTheBridge(newAngle, newStrand);
         validateBridgeActionWhenSpiderCrossIt(radius, initialStrand, newStrand);
         spiderTrackerRadius.add(radius);
         spiderTrackerStrands.add(newStrand);
@@ -553,16 +557,18 @@ public class SpiderWeb{
     private void spiderWalksBackward(){
         boolean canKeepAdvancing = true;
         int actualStrand = spider.getNumberStrand();
+        spiderTrackerRadius.add(largeStrand);
+        spiderTrackerStrands.add(actualStrand);
         while(canKeepAdvancing){
             List<Integer> bridgeKeys = new ArrayList<>(strandsBridgesMap.get(actualStrand).keySet());
             Collections.sort(bridgeKeys, Collections.reverseOrder());
             if(bridgeKeys.size() > 0){
                 for(Integer bridgeKey : bridgeKeys){
                     if(bridgeKey < spider.getRadiusFromCenter()){
-                        boolean clockWise = strandsBridgesMap.get(actualStrand).get(bridgeKey).getStrand1() > actualStrand;
-                        double newAngle = clockWise?strandsBridgesMap.get(actualStrand).get(bridgeKey).getTetha1():strandsBridgesMap.get(actualStrand).get(bridgeKey).getTetha2();
-                        int newStrand = clockWise?strandsBridgesMap.get(actualStrand).get(bridgeKey).getStrand1():strandsBridgesMap.get(actualStrand).get(bridgeKey).getStrand2();
-                        String color = strandsBridgesMap.get(actualStrand).get(bridgeKey).getColor();
+                        Bridge bridge = strandsBridgesMap.get(actualStrand).get(bridgeKey);
+                        double newAngle = spider.getVisionAngle()!=bridge.getTetha1()?bridge.getTetha1():bridge.getTetha2();
+                        String color = bridge.getColor();
+                        int newStrand = actualStrand == bridge.getStrand1()?bridge.getStrand2():bridge.getStrand1();
                         spiderMoveAndCross(bridgeKey, newAngle, newStrand, color);
                         actualStrand = newStrand;
                         break;
@@ -584,6 +590,9 @@ public class SpiderWeb{
      */
     public void spiderWalk(boolean advance){
         makeInvisibleLastPath();
+        System.out.println(bridgesColors);
+        System.out.println(bridgesNumberStrand);
+        System.out.println(bridges);
         if (advance){
             if(spider.isCentered()){
                 int startStrand = spider.getNumberStrand();
@@ -609,7 +618,7 @@ public class SpiderWeb{
             if(spot.getNumberStrand() == nstrand){
                 if(spot instanceof Bouncy){
                     if(!strands.get((nstrand+1)%numberStrands).hasSpot()){
-                        relocateSpot(color, (nstrand+1)%numberStrands);
+                        relocateBouncySpot(color, (nstrand+2)%numberStrands);
                     }
                 }
                 else if(spot instanceof Killer){
@@ -619,9 +628,9 @@ public class SpiderWeb{
         }     
     }
     
-    private void relocateSpot(String color, int nstrand){
+    private void relocateBouncySpot(String color, int nstrand){
         delSpot(color);
-        addSpot(color, nstrand);
+        addSpot("bouncy", color, nstrand);
     }
     
     private void makeInvisibleLastPath(){
@@ -645,7 +654,7 @@ public class SpiderWeb{
             spiderLastPathStrand.add(strand);
         }
         else{
-            Bridge bridge = new Bridge(strands.get(coordinates.get(0)).getTetha1(), strands.get(coordinates.get(2)).getTetha1(), xPosition, yPosition, coordinates.get(1), "blueGray", coordinates.get(0), coordinates.get(2));
+            Bridge bridge = new Bridge(strands.get(coordinates.get(0)).getTetha1(), strands.get(coordinates.get(2)).getTetha1(), xPosition, yPosition, coordinates.get(1), "green", coordinates.get(0), coordinates.get(2));
             if(isVisible){bridge.makeVisible();}
             spiderLastPathBridge.add(bridge);
         }
