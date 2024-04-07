@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Thick
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Thick\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=angle1\ angle2\ xPos\ yPos\ rad\ color1\ str1\ str2\ thick
+comment1.target=Thick(double,\ double,\ int,\ int,\ int,\ java.lang.String,\ int,\ int,\ int)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Thick\r\n
+comment2.params=
+comment2.target=void\ makeVisible()
+comment3.params=
+comment3.target=void\ makeInvisible()
+comment4.params=
+comment4.target=void\ makeThinner()
+comment5.params=
+comment5.target=int\ getThick()
+numComments=6

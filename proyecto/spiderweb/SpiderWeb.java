@@ -390,13 +390,17 @@ public class SpiderWeb{
                 bridgesColors.add(color);
                 bridgesNumberStrand.add((strand+1)%numberStrands);
                 bridges.add(newBridge);
-                ok = true;
             }
-            else{ok = false;}
         }
         else if(bridge instanceof Weak){
             delBridge(bridge.getColor());
-            ok = true;
+        }
+        else if(bridge instanceof Thick){
+            Thick thick = (Thick) bridge;
+            thick.makeThinner();
+            if(thick.getThick() == 0){
+                delBridge(bridge.getColor());
+            }
         }
     }
     
@@ -471,7 +475,7 @@ public class SpiderWeb{
             if(spider.isCentered()){
                 int startStrand = spider.getNumberStrand();
                 spiderWalksForward(startStrand);
-                spiderInSpotBouncy();   
+                validateSpotActionWhenSpiderArrive();   
                 ok = true;
             }
             else{ok = false;}
@@ -485,13 +489,18 @@ public class SpiderWeb{
         }
     }
     
-    private void spiderInSpotBouncy(){
+    private void validateSpotActionWhenSpiderArrive(){
         int nstrand = spider.getNumberStrand();
         for(String color: reachableSpots){
             Spot spot = spotsMap.get(color);
-            if(spot.getNumberStrand() == nstrand && spot instanceof Bouncy){
-                if(!strands.get((nstrand+1)%numberStrands).hasSpot()){
-                    relocateSpot(color, (nstrand+1)%numberStrands);
+            if(spot.getNumberStrand() == nstrand){
+                if(spot instanceof Bouncy){
+                    if(!strands.get((nstrand+1)%numberStrands).hasSpot()){
+                        relocateSpot(color, (nstrand+1)%numberStrands);
+                    }
+                }
+                else if(spot instanceof Killer){
+                    spiderSit(spider.getNumberStrand());
                 }
             }
         }     

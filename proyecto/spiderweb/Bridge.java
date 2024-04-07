@@ -12,15 +12,15 @@ import java.awt.*;
  * @version (a version number or a date)
  */
 public class Bridge {
-    private int xPosition;
-    private int yPosition;
-    private int radius;
-    private boolean isVisible;
-    private String color;
-    private double tetha1;
-    private double tetha2;
-    private int strand1;
-    private int strand2;
+    protected int xPosition;
+    protected int yPosition;
+    protected int radius;
+    protected boolean isVisible;
+    protected String color;
+    protected double tetha1;
+    protected double tetha2;
+    protected int strand1;
+    protected int strand2;
 
     /**
      * Constructs a new bridge with the specified properties.
