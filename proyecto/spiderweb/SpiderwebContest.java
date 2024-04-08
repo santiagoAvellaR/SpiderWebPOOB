@@ -13,8 +13,11 @@ import java.util.*;
  */
 public class SpiderwebContest{
     // instance variables - replace the example below with your own
+    private SpiderWeb actualSpiderWeb;
     private ArrayList<SpiderWeb> spiderWebs;
-    
+    private String[] colors = {"red", "black", "blue", "yellow", "green", "magenta", "white", "cyan", 
+                   "darkGray", "gray", "lightGray", "orange", "pink", "darkGreen", 
+                   "brown", "darkBrown", "purple", "golden", "burgundy", "blueGray"};
     /**
      * Constructs a SpiderwebContest object.
      */
@@ -82,5 +85,68 @@ public class SpiderwebContest{
         int[] minimunBridges = solve(strands, favorite, bridges);
         if(spiderWebs.size()>=1){spiderWebs.get(spiderWebs.size() - 1).makeInvisible();}
         SpiderWeb spiderWeb = new SpiderWeb(strands, favorite, bridges);
+        actualSpiderWeb = spiderWeb;
+        spiderWebs.add(spiderWeb);
+        spiderWeb.addSpot("blue", favorite);
+        spiderWeb.makeVisible();
+        int[][] maxTwoBridgesOfEachStrand = getTheTwoMaximunBridgesOfEachStrand(strands, bridges);
+        int cont = 0;
+        for(int minNumberBridges : minimunBridges){
+            if(minNumberBridges > 0){
+                int rightSide = cont == minimunBridges.length ? 0 : cont+1;
+                int leftSide = cont == 0 ? minimunBridges.length-1 : cont-1;
+                int selectedPath;
+                if(minimunBridges[rightSide]==minimunBridges[leftSide]){
+                    selectedPath = Math.abs(rightSide-favorite)<Math.abs(leftSide-favorite)?rightSide:leftSide;
+                    selectedPath = minimunBridges[selectedPath];
+                }
+                else{selectedPath = Math.min(minimunBridges[leftSide], minimunBridges[rightSide]);}
+                int delta;
+                int apuntador1 = cont;
+                int apuntador2;
+                int constructedBridges = 0;
+                if(selectedPath == minimunBridges[rightSide]){
+                    apuntador1 = cont;
+                    apuntador2 = (cont+strands-1)%strands;
+                    while(apuntador1 != favorite){
+                        if(minimunBridges[apuntador1] - constructedBridges != minimunBridges[apuntador2]){
+                            if(minimunBridges[apuntador1] - constructedBridges > minimunBridges[apuntador2]){
+                            }
+                            else{
+                                
+                            }
+                        }
+                        else{
+                            int distance = maxTwoBridgesOfEachStrand[cont][0];
+                            actualSpiderWeb.addBridge(colors[cont], distance+7, apuntador2+1);
+                            constructedBridges +=1;
+                            cont+=1;
+                        }
+                    }
+                }
+                else{
+                    
+                }
+                cont+=1;
+            }
+        }
+    }
+    
+    private int[][] getTheTwoMaximunBridgesOfEachStrand(int strands, int[][] bridges) {
+        int[][] maxBridges = new int[strands][2]; // Inicializamos el arreglo con el tamaño adecuado
+        for (int i = 0; i < strands; i++) {
+            maxBridges[i] = new int[]{0, 0}; // Inicializamos cada subarreglo con valores por defecto
+        }
+        for (int[] info : bridges) {
+            int numberStrand = info[1] - 1;
+            int radius = info[0];
+            if (radius > maxBridges[numberStrand][0]) {
+                maxBridges[numberStrand][1] = maxBridges[numberStrand][0]; // Movemos el máximo anterior al segundo máximo
+                maxBridges[numberStrand][0] = radius; // Actualizamos el máximo
+            } else if (radius > maxBridges[numberStrand][1]) {
+                maxBridges[numberStrand][1] = radius; // Actualizamos el segundo máximo
+            }
+        }
+        return maxBridges; // Devolvemos el resultado al final del método
     }
 }

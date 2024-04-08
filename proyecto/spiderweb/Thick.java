@@ -17,19 +17,24 @@ public class Thick extends Bridge
      */
     public Thick(double angle1, double angle2, int xPos, int yPos, int rad, String color1, int str1, int str2){
         super(angle1, angle2, xPos, yPos, rad, color1, str1, str2);
-        thick = getRandomNumberInRange(2,8);
+        thick = 6;
         int i = 0;
-        int extraThick = 1;
         while(i <= (int) (thick/2)){
             Bridge bridge = new Bridge(angle1, angle2, xPos, yPos, rad + i, color1, str1, str2);
             bridges.add(bridge);
             i++;
         }
-        i*=-1;
-        while(i > (int) (thick*-1)){
+        i=-1;
+        while(i*-1 < (int) (thick/2)){
             Bridge bridge = new Bridge(angle1, angle2, xPos, yPos, rad + i, color1, str1, str2);
             bridges.add(bridge);
             i--;
+        }
+    }
+    
+    public void printRadiusOfBridgesThatComposeThick(){
+        for(Bridge bridge : bridges){
+            System.out.println(bridge.getRadius());
         }
     }
     

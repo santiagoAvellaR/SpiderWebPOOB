@@ -16,12 +16,12 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class SpiderwebCC2Test{
+public class SpiderwebC2Test{
     private SpiderWeb spiderWebProof;
     /**
      * Default constructor for test class SpiderWebTest
      */
-    public SpiderwebCC2Test(){
+    public SpiderwebC2Test(){
         this.spiderWebProof = new SpiderWeb(10,200);
         spiderWebProof.addBridge("red", 100,1);//adiciona un puente
         spiderWebProof.addBridge("yellow", 30,6);//adiciona un puente

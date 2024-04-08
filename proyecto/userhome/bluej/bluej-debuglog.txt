@@ -3576,3 +3576,36 @@ java.lang.NullPointerException: Cannot invoke "java.util.List.iterator()" becaus
 	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
 	at com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
 	at java.base/java.lang.Thread.run(Thread.java:833)
+Giving up on line #755
+1712540571472: Listening for JDWP connection on address: javadebug
+Connected to debug VM via dt_shmem transport...
+Communication with debug VM fully established.
+An unexpected exception occurred:
+java.lang.IllegalArgumentException: line/column numbers must be > 0
+	at bluej.parser.SourceLocation.<init>(SourceLocation.java:39)
+	at bluej.editor.flow.FlowErrorManager$ErrorDetails.<init>(FlowErrorManager.java:232)
+	at bluej.editor.flow.FlowErrorManager.showErrors(FlowErrorManager.java:111)
+	at bluej.editor.flow.FlowErrorManager.lambda$addErrorHighlight$0(FlowErrorManager.java:105)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:456)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:455)
+	at com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+An unexpected exception occurred:
+java.lang.IllegalArgumentException: line/column numbers must be > 0
+	at bluej.parser.SourceLocation.<init>(SourceLocation.java:39)
+	at bluej.editor.flow.FlowErrorManager$ErrorDetails.<init>(FlowErrorManager.java:232)
+	at bluej.editor.flow.FlowErrorManager.showErrors(FlowErrorManager.java:111)
+	at bluej.editor.flow.FlowErrorManager.lambda$addErrorHighlight$0(FlowErrorManager.java:105)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:456)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:455)
+	at com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+1712551907302: Listening for JDWP connection on address: javadebug
+Connected to debug VM via dt_shmem transport...
+Communication with debug VM fully established.

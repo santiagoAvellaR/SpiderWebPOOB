@@ -13,4 +13,6 @@ comment3.text=\r\n\ Solves\ the\ spider\ web\ problem\ for\ a\ given\ number\ of
 comment4.params=strands\ favorite\ bridges
 comment4.target=void\ simulate(int,\ int,\ int[][])
 comment4.text=\r\n\ Simulates\ a\ spider\ web\ contest\ using\ the\ provided\ parameters.\r\n\ \r\n\ @param\ strands\ the\ total\ number\ of\ strands\ in\ the\ spider\ web\r\n\ @param\ favorite\ the\ index\ of\ the\ spider's\ favorite\ strand\r\n\ @param\ bridges\ the\ 2D\ array\ containing\ information\ about\ bridges\r\n
-numComments=5
+comment5.params=strands\ bridges
+comment5.target=int[][]\ getTheTwoMaximunBridgesOfEachStrand(int,\ int[][])
+numComments=6

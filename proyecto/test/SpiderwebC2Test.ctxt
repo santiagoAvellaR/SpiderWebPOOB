@@ -1,8 +1,8 @@
 #BlueJ class context
-comment0.target=SpiderwebCC2Test
+comment0.target=SpiderwebC2Test
 comment0.text=\r\n\ The\ test\ class\ SpiderWebTest.\r\n\r\n\ This\ class\ contains\ unit\ tests\ for\ the\ SpiderWeb\ class.\r\n\ It\ tests\ various\ functionalities\ such\ as\ adding\ bridges,\ spots,\ deleting\ bridges\ and\ spots,\ etc.\r\n\ \r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=
-comment1.target=SpiderwebCC2Test()
+comment1.target=SpiderwebC2Test()
 comment1.text=\r\n\ Default\ constructor\ for\ test\ class\ SpiderWebTest\r\n
 comment10.params=
 comment10.target=void\ shouldReturnTheColorOfAllTheBridges()
