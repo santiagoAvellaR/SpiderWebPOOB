@@ -306,10 +306,6 @@ public class SpiderWeb{
                     strandsBridgesMap.get(strandNumber).get(radio).makeVisible();
                 }
             }
-            for(int i = 0; i < bridges.size() ; i++){
-                Bridge bridge = bridges.get(i);
-                bridge.makeVisible();
-            }
             spider.makeVisible();
             isVisible = true; 
         }
@@ -327,9 +323,10 @@ public class SpiderWeb{
             for(String color : spotsMap.keySet().toArray(new String[0])){
                 spotsMap.get(color).makeInvisible();
             }
-            for(int i = 0; i < bridges.size() ; i++){
-                Bridge bridge = bridges.get(i);
-                bridge.makeInvisible();
+            for(Integer strandNumber : strandsBridgesMap.keySet().toArray(new Integer[0])){
+                for(Integer radio : strandsBridgesMap.get(strandNumber).keySet().toArray(new Integer[0])){
+                    strandsBridgesMap.get(strandNumber).get(radio).makeInvisible();
+                }
             }
             makeInvisibleLastPath();
             spider.makeInvisible();
@@ -464,11 +461,6 @@ public class SpiderWeb{
         while(canKeepAdvancing){
             List<Integer> bridgeKeys = new ArrayList<>(strandsBridgesMap.get(actualStrand).keySet());
             Collections.sort(bridgeKeys);
-            System.out.print("los puentes disponibles en el hilo " + (actualStrand+1) + " son: ");
-            System.out.println(bridgeKeys);
-            System.out.println(bridgesColors);
-            System.out.println(bridgesNumberStrand);
-            System.out.println(bridges);
             if(bridgeKeys.size() > 0){
                 for(Integer bridgeKey : bridgeKeys){
                     if(bridgeKey > spider.getRadiusFromCenter()){
@@ -496,14 +488,14 @@ public class SpiderWeb{
         String color = bridge.getColor();
         if(clockWise){
             nextToFinalStrand = finalStrand-1>0?finalStrand-1:numberStrands-1;
-            if(!(strandsBridgesMap.get(nextToFinalStrand).containsKey(newDistance)) && newDistance <= largeStrand){
+            if(!(strandsBridgesMap.get(nextToFinalStrand).containsKey(newDistance)) && newDistance < largeStrand){
                 delBridge(color);
                 addBridge("mobile", color, newDistance, finalStrand+1);
             }
         }
         else{
             nextToFinalStrand = (finalStrand+1)%numberStrands;
-            if(!(strandsBridgesMap.get(nextToFinalStrand).containsKey(newDistance)) && newDistance <= largeStrand){
+            if(!(strandsBridgesMap.get(nextToFinalStrand).containsKey(newDistance)) && newDistance < largeStrand){
                 delBridge(color);
                 addBridge("mobile", color, newDistance, finalStrand+1);
             }
@@ -511,7 +503,6 @@ public class SpiderWeb{
     }
     
     private void validateBridgeActionWhenSpiderCrossIt(int radius, int initialStrand, int finalStrand){
-        System.out.println("radio : " + radius + " initialStrand: " + initialStrand + " finalStrand: " + finalStrand);
         Bridge bridge = strandsBridgesMap.get(initialStrand).get(radius);
         if (bridge instanceof Mobile){
             mobileActionWhenSpiderCross(radius, initialStrand, finalStrand);
@@ -545,16 +536,16 @@ public class SpiderWeb{
     }
     
     private void spiderMoveToFinalPosition(boolean forward){
-        int newStrand = spider.getNumberStrand();
+        int actualStrand = spider.getNumberStrand();
         int radius = forward?largeStrand:0;
         spider.walkToTheBridge(radius);
         spiderTrackerRadius.add(radius);
-        spiderTrackerStrands.add(newStrand);
+        spiderTrackerStrands.add(actualStrand);
         spider.setIsCentered(!forward);
-        spider.setNumberStrand(newStrand);
-        if(strands.get(newStrand).hasSpot()){
+        spider.setNumberStrand(actualStrand);
+        if(strands.get(actualStrand).hasSpot()){
             for (String spotColor : spotsMap.keySet().toArray(new String[0])){
-                if(spotsMap.get(spotColor).getNumberStrand()==newStrand && !reachableSpots.contains(spotColor)){
+                if(spotsMap.get(spotColor).getNumberStrand()==actualStrand && !reachableSpots.contains(spotColor)){
                     reachableSpots.add(spotColor);
                     break;
                 }
@@ -598,18 +589,12 @@ public class SpiderWeb{
      */
     public void spiderWalk(boolean advance){
         makeInvisibleLastPath();
-        System.out.println(bridgesColors);
-        System.out.println(bridgesNumberStrand);
-        System.out.println(bridges);
         if (advance){
             if(spider.isCentered()){
                 int startStrand = spider.getNumberStrand();
                 spiderWalksForward(startStrand);
                 validateSpotActionWhenSpiderArrive();   
                 ok = true;
-                System.out.println(bridgesColors);
-                System.out.println(bridgesNumberStrand);
-                System.out.println(bridges);
             }
             else{ok = false;}
         }
@@ -623,21 +608,22 @@ public class SpiderWeb{
     }
     
     private void validateSpotActionWhenSpiderArrive(){
-        int nstrand = spider.getNumberStrand();
-        for(String color: reachableSpots){
-            Spot spot = spotsMap.get(color);
-            if(spot.getNumberStrand() == nstrand){
-                if(spot instanceof Bouncy){
+        if(reachableSpots.size()>=1){
+            int nstrand = spider.getNumberStrand();
+            String lastSpotColor = reachableSpots.get(reachableSpots.size()-1);
+            Spot lastSpot = spotsMap.get(lastSpotColor);
+            if(lastSpot.getNumberStrand() == nstrand){
+                if(lastSpot instanceof Bouncy){
                     if(!strands.get((nstrand+1)%numberStrands).hasSpot()){
-                        relocateBouncySpot(color, (nstrand+2)%numberStrands);
+                        relocateBouncySpot(lastSpotColor, (nstrand+2)%numberStrands);
                     }
                 }
-                else if(spot instanceof Killer){
+                else if(lastSpot instanceof Killer){
                     spider.setPosition(xPosition-8, yPosition-8);
-                    spiderSit(spider.getNumberStrand());
+                    spiderSit(nstrand);
                 }
             }
-        }     
+        }
     }
     
     private void relocateBouncySpot(String color, int nstrand){
