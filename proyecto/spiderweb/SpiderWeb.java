@@ -134,11 +134,11 @@ public class SpiderWeb{
      * @param distance the distance between the strands connected by the bridge
      * @param firstStrand the index of the first strand connected by the bridge
      */
-    public void addBridge(String type, String color, int distance, int firstStrand){
-        if(1 <= firstStrand && firstStrand <= numberStrands && distance <= largeStrand && !(bridgesColors.contains(color)) && numberStrands>1 && !color.equals("green")){
-            int strand1 = firstStrand-1;
+    public void addBridge(String type, String color, int distance, int strand){
+        if(1 <= strand && strand <= numberStrands && distance <= largeStrand && !(bridgesColors.contains(color)) && numberStrands>1 && !color.equals("green")){
+            int strand1 = strand-1;
             int strand0 = strand1 == 0? numberStrands-1:strand1-1;
-            int strand2 = firstStrand == numberStrands?0:firstStrand;
+            int strand2 = strand == numberStrands?0:strand;
             if(!strandsBridgesMap.get(strand0).containsKey(distance)&& !strandsBridgesMap.get(strand2).containsKey(distance)){
                 Bridge newBridge = null;
                 boolean isValidType = false;
