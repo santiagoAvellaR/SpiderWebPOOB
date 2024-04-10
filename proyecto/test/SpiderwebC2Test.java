@@ -274,16 +274,16 @@ public class SpiderwebC2Test{
      */
     @Test
     public void shouldEnlargeSpiderWeb(){
-        assertEquals(spiderWebProof.getLargeStrand(), 200);
+        assertEquals(spiderWebProof.getRadiusStrand(), 200);
         spiderWebProof.enlarge(1);
         assertTrue(spiderWebProof.ok());
-        assertEquals(spiderWebProof.getLargeStrand(), 200);
+        assertEquals(spiderWebProof.getRadiusStrand(), 200);
         spiderWebProof.enlarge(0.5);
         assertTrue(spiderWebProof.ok());
-        assertEquals(spiderWebProof.getLargeStrand(), 100);
+        assertEquals(spiderWebProof.getRadiusStrand(), 100);
         spiderWebProof.enlarge(4);
         assertTrue(spiderWebProof.ok());
-        assertEquals(spiderWebProof.getLargeStrand(), 400);
+        assertEquals(spiderWebProof.getRadiusStrand(), 400);
     }
     
     /**
@@ -293,10 +293,10 @@ public class SpiderwebC2Test{
     public void shouldNotEnlargeSpiderWeb(){
         spiderWebProof.enlarge(-2);//al ser un numero negativo no debe cambiar el valor
         assertFalse(spiderWebProof.ok());
-        assertEquals(spiderWebProof.getLargeStrand(), 200);
+        assertEquals(spiderWebProof.getRadiusStrand(), 200);
         spiderWebProof.enlarge(0);//al ser un numero negativo no debe cambiar el valor
         assertFalse(spiderWebProof.ok());
-        assertEquals(spiderWebProof.getLargeStrand(), 200);
+        assertEquals(spiderWebProof.getRadiusStrand(), 200);
     }
     
     /**

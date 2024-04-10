@@ -16,7 +16,7 @@ import java.util.*;
 public class SpiderWeb{
     private int numberBridges = 0;
     private int numberSpots = 0;
-    private int largeStrand;
+    private int radiusStrand;
     public static int xPosition;
     public static int yPosition;
     private int numberStrands;
@@ -25,8 +25,7 @@ public class SpiderWeb{
     // strands
     private ArrayList<Strand> strands = new ArrayList<>();
     // bridges
-    private ArrayList<String> bridgesColors = new ArrayList<>();
-    private ArrayList<Integer> bridgesNumberStrand = new ArrayList<>();
+    private ArrayList<String> bridgesUsedColors = new ArrayList<>();
     private ArrayList<Bridge> bridges = new ArrayList<>();
     private Map<Integer, Map<Integer, Bridge>> strandsBridgesMap= new HashMap<>();  // numberStrand -> radius -> Bridge
     private ArrayList<String> usedBridges = new ArrayList<>();
@@ -55,14 +54,14 @@ public class SpiderWeb{
      */
     public SpiderWeb(int strands, int radio) {
         numberStrands = strands;
-        largeStrand = radio;
+        radiusStrand = radio;
         xPosition = 425;
         yPosition = 350;
         isVisible = false;
         spider = new Spider(xPosition-8, yPosition-8);
         double angle = (double) 360 / (double) numberStrands;
         for (double i = 0; i < 360; i += angle) {
-            Strand strand = new Strand(xPosition, yPosition, largeStrand, i, "black");
+            Strand strand = new Strand(xPosition, yPosition, radiusStrand, i, "black");
             this.strands.add(strand);
             strandsBridgesMap.put(this.strands.indexOf(strand), new HashMap<>());
         }
@@ -78,14 +77,14 @@ public class SpiderWeb{
      */
     public SpiderWeb(int strands, int favorite, int[][] bridges){
         numberStrands = strands;
-        largeStrand = 240;
+        radiusStrand = 240;
         xPosition = 425;
         yPosition = 350;
         isVisible = false;
         spider = new Spider(xPosition-8, yPosition-8);
         double angle = (double) 360 / (double) numberStrands;
         for (double i = 0; i < 360; i += angle) {
-            Strand strand = new Strand(xPosition, yPosition, largeStrand, i, "black");
+            Strand strand = new Strand(xPosition, yPosition, radiusStrand, i, "black");
             this.strands.add(strand);
             strandsBridgesMap.put(this.strands.indexOf(strand), new HashMap<>());
         }
@@ -106,7 +105,7 @@ public class SpiderWeb{
      * @param firstStrand the index of the first strand connected by the bridge
      */
     public void addBridge(String color, int distance, int firstStrand){
-        if(1 <= firstStrand && firstStrand <= numberStrands && distance <= largeStrand && !(bridgesColors.contains(color)) && numberStrands>1 && !color.equals("green")){
+        if(1 <= firstStrand && firstStrand <= numberStrands && distance <= radiusStrand && !(bridgesUsedColors.contains(color)) && numberStrands>1 && !color.equals("green")){
             int strand1 = firstStrand-1;
             int strand0 = strand1 == 0? numberStrands-1:strand1-1;
             int strand2 = firstStrand == numberStrands?0:firstStrand;
@@ -115,8 +114,7 @@ public class SpiderWeb{
                 if(isVisible){newBridge.makeVisible();}
                 strandsBridgesMap.get(strand1).put(distance, newBridge);
                 strandsBridgesMap.get(strand2).put(distance, newBridge);
-                bridgesColors.add(color);
-                bridgesNumberStrand.add(strand1);
+                bridgesUsedColors.add(color);
                 bridges.add(newBridge);
                 numberBridges += 1;
                 ok = true;
@@ -135,7 +133,7 @@ public class SpiderWeb{
      * @param firstStrand the index of the first strand connected by the bridge
      */
     public void addBridge(String type, String color, int distance, int strand){
-        if(1 <= strand && strand <= numberStrands && distance <= largeStrand && !(bridgesColors.contains(color)) && numberStrands>1 && !color.equals("green")){
+        if(1 <= strand && strand <= numberStrands && distance <= radiusStrand && !(bridgesUsedColors.contains(color)) && numberStrands>1 && !color.equals("green")){
             int strand1 = strand-1;
             int strand0 = strand1 == 0? numberStrands-1:strand1-1;
             int strand2 = strand == numberStrands?0:strand;
@@ -172,8 +170,7 @@ public class SpiderWeb{
                     if(isVisible){newBridge.makeVisible();}
                     strandsBridgesMap.get(strand1).put(distance, newBridge);
                     strandsBridgesMap.get(strand2).put(distance, newBridge);
-                    bridgesColors.add(color);
-                    bridgesNumberStrand.add(strand1);
+                    bridgesUsedColors.add(color);
                     bridges.add(newBridge);
                     numberBridges += 1;
                     ok = true;
@@ -191,25 +188,25 @@ public class SpiderWeb{
      * @param color the color of the bridge to be removed
      */
     public void delBridge(String color) {
-        if (bridgesColors.contains(color)){
-            int index = bridgesColors.indexOf(color);
-            int numberFirstStrand = bridgesNumberStrand.get(index);
-            int keyBridge = findKeyBridge(numberFirstStrand, color);
-            if (keyBridge != -500){
-                if(!(bridges.get(index) instanceof Fixed)){
-                    if(bridges.get(index) instanceof Transformer){
-                        changeSpot(numberFirstStrand, bridges.get(index).getColor());
-                    }
-                    bridgesColors.remove(index);
-                    bridgesNumberStrand.remove(index);
-                    bridges.remove(index);
-                    strandsBridgesMap.get(numberFirstStrand).get(keyBridge).makeInvisible();
-                    strandsBridgesMap.get(numberFirstStrand).remove(keyBridge);
-                    numberBridges -= 1;
-                    ok = true;
+        if (bridgesUsedColors.contains(color)){
+            int index = bridgesUsedColors.indexOf(color);
+            int numberFirstStrand = bridges.get(index).getStrand1();
+            int bridgeRadius = bridges.get(index).getRadius();
+            if(!(bridges.get(index) instanceof Fixed)){
+                if(bridges.get(index) instanceof Transformer){
+                    changeSpot(numberFirstStrand, bridges.get(index).getColor());
                 }
+                int numberSecondStrand = numberFirstStrand == numberStrands-1?0:numberFirstStrand+1;
+                bridgesUsedColors.remove(index);
+                bridges.get(index).makeInvisible();
+                bridges.remove(index);
+                strandsBridgesMap.get(numberFirstStrand).get(bridgeRadius).makeInvisible();
+                strandsBridgesMap.get(numberFirstStrand).remove(bridgeRadius);
+                strandsBridgesMap.get(numberSecondStrand).get(bridgeRadius).makeInvisible();
+                strandsBridgesMap.get(numberSecondStrand).remove(bridgeRadius);
+                numberBridges -= 1;
+                ok = true;
             }
-            else{ok = false;}
         }
         else{ok = false;}
     }
@@ -223,17 +220,6 @@ public class SpiderWeb{
         }
     }
     
-    private int findKeyBridge(int numberFirstStrand, String color){
-        int bridgeRadius = -500;
-        for(int radius : strandsBridgesMap.get(numberFirstStrand).keySet().toArray(new Integer[0])){
-            if(strandsBridgesMap.get(numberFirstStrand).get(radius).getColor().equals(color)){
-                bridgeRadius = radius;
-                break;
-            }
-        }
-        return bridgeRadius;
-    }
-    
     /**
      * Relocates a bridge to a new distance between strands.
      * 
@@ -241,9 +227,9 @@ public class SpiderWeb{
      * @param distance the new distance between strands
      */
     public void relocateBridge(String color, int distance){
-        if (bridgesColors.contains(color) && distance <= largeStrand && distance > 0){
-            int index = bridgesColors.indexOf(color);
-            int numberFirstStrand = bridgesNumberStrand.get(index);
+        if (bridgesUsedColors.contains(color) && distance <= radiusStrand && distance > 0){
+            int index = bridgesUsedColors.indexOf(color);
+            int numberFirstStrand = bridges.get(index).getStrand1();
             if(!(strandsBridgesMap.get(numberFirstStrand).containsKey(distance))){
                 delBridge(color);
                 addBridge(color, distance, numberFirstStrand+1);
@@ -262,19 +248,13 @@ public class SpiderWeb{
      */
     public int[] bridge(String color){
         ArrayList<Integer> bridgeAnswer = new ArrayList<>();
-        if (bridgesColors.contains(color)){
-            int index = bridgesColors.indexOf(color);
-            int numberFirstStrand = bridgesNumberStrand.get(index);
+        if (bridgesUsedColors.contains(color)){
+            int index = bridgesUsedColors.indexOf(color);
+            int numberFirstStrand = bridges.get(index).getStrand1();
+            bridgeAnswer.add(numberFirstStrand+1);
+            int bridgeRadius = bridges.get(index).getRadius();
+            bridgeAnswer.add(bridgeRadius);
             int numberStrand = -500;
-            for (Integer radio : strandsBridgesMap.get(numberFirstStrand).keySet().toArray(new Integer[0])){
-                if (strandsBridgesMap.get(numberFirstStrand).get(radio).getColor().equals(color)){
-                    numberStrand = strandsBridgesMap.get(numberFirstStrand).get(radio).getStrand1();
-                    bridgeAnswer.add(numberStrand+1);
-                    bridgeAnswer.add(radio);
-                    ok = true;
-                    break;
-                }
-            }
         }
         else{ok = false;}
         return bridgeAnswer.stream().mapToInt(Integer::intValue).toArray();
@@ -287,7 +267,7 @@ public class SpiderWeb{
      */
     public String[] bridges(){
         ok = true;
-        return bridgesColors.toArray(new String[0]);
+        return bridgesUsedColors.toArray(new String[0]);
     }
     
     /**
@@ -363,7 +343,7 @@ public class SpiderWeb{
         if (!spotsMap.containsKey(color) && 1 <= strand && strand <= numberStrands  && !strands.get(strand-1).hasSpot()){
             int spotRadius = Spot.size/2;
             double angle = strands.get(strand-1).getTetha1();
-            Spot spot = new Spot(xPosition - spotRadius + (int) (largeStrand*Math.cos(angle)), yPosition - spotRadius - (int) (largeStrand*Math.sin(angle)),color, strand-1);
+            Spot spot = new Spot(xPosition - spotRadius + (int) (radiusStrand*Math.cos(angle)), yPosition - spotRadius - (int) (radiusStrand*Math.sin(angle)),color, strand-1);
             spotsMap.put(color, spot);
             strands.get(strand-1).setHasSpot(true);
             if (isVisible){spot.makeVisible();}
@@ -387,15 +367,15 @@ public class SpiderWeb{
             boolean isAValidType = false;
             Spot spot = null;
             if(type.equals("normal")){
-                spot = new Spot(xPosition - spotRadius + (int) (largeStrand*Math.cos(angle)), yPosition - spotRadius - (int) (largeStrand*Math.sin(angle)),color, strand-1);
+                spot = new Spot(xPosition - spotRadius + (int) (radiusStrand*Math.cos(angle)), yPosition - spotRadius - (int) (radiusStrand*Math.sin(angle)),color, strand-1);
                 isAValidType = true;
             }
             else if(type.equals("bouncy")){
-                spot = new Bouncy(xPosition - spotRadius + (int) (largeStrand*Math.cos(angle)), yPosition - spotRadius - (int) (largeStrand*Math.sin(angle)),color, strand-1);
+                spot = new Bouncy(xPosition - spotRadius + (int) (radiusStrand*Math.cos(angle)), yPosition - spotRadius - (int) (radiusStrand*Math.sin(angle)),color, strand-1);
                 isAValidType = true;
             }
             else if(type.equals("killer")){
-                spot = new Killer(xPosition - spotRadius + (int) (largeStrand*Math.cos(angle)), yPosition - spotRadius - (int) (largeStrand*Math.sin(angle)),color, strand-1);
+                spot = new Killer(xPosition - spotRadius + (int) (radiusStrand*Math.cos(angle)), yPosition - spotRadius - (int) (radiusStrand*Math.sin(angle)),color, strand-1);
                 isAValidType = true;
             }
             if(isAValidType){
@@ -481,21 +461,24 @@ public class SpiderWeb{
     }
     
     private void mobileActionWhenSpiderCross(int radius, int initialStrand, int finalStrand){
+        System.out.println(initialStrand+", "+finalStrand);
         Bridge bridge = strandsBridgesMap.get(initialStrand).get(radius);
         boolean clockWise = initialStrand > finalStrand;
+        if(initialStrand == numberStrands-1 && finalStrand == 0){clockWise = false;}
+        else if(initialStrand == 0 && numberStrands-1 == finalStrand){clockWise = true;}
         int nextToFinalStrand;
         int newDistance = (int) (radius*1.20);
         String color = bridge.getColor();
         if(clockWise){
-            nextToFinalStrand = finalStrand-1>0?finalStrand-1:numberStrands-1;
-            if(!(strandsBridgesMap.get(nextToFinalStrand).containsKey(newDistance)) && newDistance < largeStrand){
+            nextToFinalStrand = (finalStrand+6)%numberStrands;
+            if(!(strandsBridgesMap.get(nextToFinalStrand).containsKey(newDistance)) && newDistance < radiusStrand){
                 delBridge(color);
-                addBridge("mobile", color, newDistance, finalStrand+1);
+                addBridge("mobile", color, newDistance, nextToFinalStrand+1);
             }
         }
         else{
             nextToFinalStrand = (finalStrand+1)%numberStrands;
-            if(!(strandsBridgesMap.get(nextToFinalStrand).containsKey(newDistance)) && newDistance < largeStrand){
+            if(!(strandsBridgesMap.get(nextToFinalStrand).containsKey(newDistance)) && newDistance < radiusStrand){
                 delBridge(color);
                 addBridge("mobile", color, newDistance, finalStrand+1);
             }
@@ -537,7 +520,7 @@ public class SpiderWeb{
     
     private void spiderMoveToFinalPosition(boolean forward){
         int actualStrand = spider.getNumberStrand();
-        int radius = forward?largeStrand:0;
+        int radius = forward?radiusStrand:0;
         spider.walkToTheBridge(radius);
         spiderTrackerRadius.add(radius);
         spiderTrackerStrands.add(actualStrand);
@@ -556,7 +539,7 @@ public class SpiderWeb{
     private void spiderWalksBackward(){
         boolean canKeepAdvancing = true;
         int actualStrand = spider.getNumberStrand();
-        spiderTrackerRadius.add(largeStrand);
+        spiderTrackerRadius.add(radiusStrand);
         spiderTrackerStrands.add(actualStrand);
         while(canKeepAdvancing){
             List<Integer> bridgeKeys = new ArrayList<>(strandsBridgesMap.get(actualStrand).keySet());
@@ -718,6 +701,11 @@ public class SpiderWeb{
     
     // Helper method for loading a predefined spider web
     public void cargarTelaraña(){
+        makeVisible();
+        addBridge("mobile", "red", 5,1);
+        spiderSit(2);
+        spiderWalk(true);
+        /*
         addBridge("blue",90,1);
         addBridge("red",40,3);
         addBridge("blueGray",60,3);
@@ -740,14 +728,14 @@ public class SpiderWeb{
         addBridge("purple", 70, 2);
         addBridge("golden", 100, 2);
         printBridgesInfo();
-        System.out.println(bridgesColors);
-        System.out.println(bridgesNumberStrand);
+        System.out.println(bridgesUsedColors);
         System.out.println(bridges);
+        */
     }
     
     public void enlarge(double percentage){
         if(percentage>0){
-            largeStrand = (int) (largeStrand*percentage);
+            radiusStrand = (int) (radiusStrand*percentage);
             for(Strand r: strands){
                 r.enlarge(percentage);
             }
@@ -772,7 +760,7 @@ public class SpiderWeb{
     // Helper method for reorganizing strands after adding a new one
     private void reOrganizeStrands(){
         double newangle = 360/numberStrands;
-        Strand strand = new Strand(xPosition, yPosition, largeStrand, 0, "black");
+        Strand strand = new Strand(xPosition, yPosition, radiusStrand, 0, "black");
         this.strands.add(strand);
         int i = 0;
         strandsBridgesMap.put(this.strands.indexOf(strand), new HashMap<>());
@@ -807,7 +795,7 @@ public class SpiderWeb{
             int spotRadius = valor.size/2;
             int strand = valor.getNumberStrand();
             double angle = strands.get(strand).getTetha1();
-            valor.setPosition(xPosition - spotRadius + (int) (largeStrand*Math.cos(angle)), yPosition - spotRadius - (int) (largeStrand*Math.sin(angle)));
+            valor.setPosition(xPosition - spotRadius + (int) (radiusStrand*Math.cos(angle)), yPosition - spotRadius - (int) (radiusStrand*Math.sin(angle)));
         }
     }
     
@@ -816,8 +804,8 @@ public class SpiderWeb{
      * 
      * @return the radius of the strands
      */
-    public int getLargeStrand(){
-        return largeStrand;
+    public int getRadiusStrand(){
+        return radiusStrand;
     }
     
     /**

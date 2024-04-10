@@ -96,7 +96,7 @@ public class SpiderWebTestC4
     }
     
     @Test
-    public void ShouldDieSpider(){
+    public void ShouldSpiderDie(){
         spiderweb.addSpot("killer", "red",1);
         spiderweb.spiderWalk(true);
         assertTrue(spiderweb.ok());
@@ -105,6 +105,30 @@ public class SpiderWebTestC4
     
     @Test
     public void ShouldDisappearThick(){
+        spiderweb.addBridge("thick", "red", 40, 1);
+        assertEquals(spiderweb.getNumberBridges(), 1);
+        for(int i = 0; i < 6; i++){
+            spiderweb.spiderSit(1);
+            spiderweb.spiderWalk(true);
+        }
+        assertEquals(spiderweb.getNumberBridges(), 0);
+        spiderweb.makeInvisible();
+    }
+    
+    @Test
+    public void ShouldMobileDissapearAndWorkClockWise(){
+        spiderweb.addBridge("thick", "red", 40, 1);
+        assertEquals(spiderweb.getNumberBridges(), 1);
+        for(int i = 0; i < 6; i++){
+            spiderweb.spiderSit(1);
+            spiderweb.spiderWalk(true);
+        }
+        assertEquals(spiderweb.getNumberBridges(), 0);
+        spiderweb.makeInvisible();
+    }
+    
+    @Test
+    public void ShouldMobileDissapearAndWorkCounterClockwise(){
         spiderweb.addBridge("thick", "red", 40, 1);
         assertEquals(spiderweb.getNumberBridges(), 1);
         for(int i = 0; i < 6; i++){
