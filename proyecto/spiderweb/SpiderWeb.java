@@ -88,13 +88,15 @@ public class SpiderWeb{
             this.strands.add(strand);
             strandsBridgesMap.put(this.strands.indexOf(strand), new HashMap<>());
         }
-        int indexColor = 0;
         for (int[] info : bridges){
-            int numberStrand = info[1]-1;
-            int radius = info[0]; 
-            Bridge bridge = new Bridge(this.strands.get(numberStrand).getTetha1(), this.strands.get(numberStrand+1).getTetha1(), xPosition, yPosition, radius, availableColors[indexColor], numberStrand, numberStrand+1);
+            int numberStrand = info[1];
+            int radius = info[0]*10;
+            String[] colorArray = Arrays.stream(info).mapToObj(String::valueOf).toArray(String[]::new);
+            String color = String.join(" ", colorArray);
+            addBridge(color, radius, numberStrand);
         }
         ok = true;
+        System.out.println(bridgesUsedColors);
     }
     
     /**
@@ -864,5 +866,56 @@ public class SpiderWeb{
     
     public int getNumberSpots(){
         return numberSpots;
+    }
+    
+    public int spiderWalkSimulate(int strand){
+        boolean canKeepAdvancing = true;
+        int actualStrand = strand;
+        int actualRadius = 0;
+        while(canKeepAdvancing){
+            List<Integer> bridgeKeys = new ArrayList<>(strandsBridgesMap.get(actualStrand).keySet());
+            Collections.sort(bridgeKeys);
+            if(bridgeKeys.size() > 0){
+                for(Integer bridgeKey : bridgeKeys){
+                    if(bridgeKey > actualRadius){
+                        Bridge bridge = strandsBridgesMap.get(actualStrand).get(bridgeKey);
+                        double newAngle = spider.getVisionAngle()!=bridge.getTetha1()?bridge.getTetha1():bridge.getTetha2();
+                        String color = bridge.getColor();
+                        int newStrand = actualStrand == bridge.getStrand1()?bridge.getStrand2():bridge.getStrand1();
+                        actualStrand = newStrand;
+                        actualRadius = bridgeKey;
+                        break;
+                    }
+                    if(bridgeKeys.indexOf(bridgeKey)+1>=bridgeKeys.size()){canKeepAdvancing = false;}
+                }
+            }
+            else{canKeepAdvancing = false;}
+        }
+        return actualStrand;
+    }
+    
+    public boolean hasBridgeBetweenStrands(int strand1, int strand2){
+        boolean hasBridge = false;
+        for(Integer radius : strandsBridgesMap.get(strand1).keySet()){
+            Bridge bridge = strandsBridgesMap.get(strand1).get(radius);
+            if(bridge.getStrand1() == strand2 || bridge.getStrand2() == strand2){
+                hasBridge = true;
+                break;
+            }
+        }
+        return hasBridge;
+    }
+    
+    public int[] maximunBridgesInTheStrand(int strand){
+        ArrayList<Integer> bridgeKeys = new ArrayList<>(strandsBridgesMap.get(strand).keySet());
+        Collections.sort(bridgeKeys);
+        ArrayList<Integer> maxBridges = new ArrayList<>();
+        try{
+            maxBridges.add(bridgeKeys.get(bridgeKeys.size()-2));
+            maxBridges.add(bridgeKeys.get(bridgeKeys.size()-1));
+        }
+        catch(IndexOutOfBoundsException e){
+        }
+        return maxBridges.stream().mapToInt(Integer::intValue).toArray();
     }
 }

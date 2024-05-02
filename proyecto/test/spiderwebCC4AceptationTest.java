@@ -43,6 +43,7 @@ public class spiderwebCC4AceptationTest
     @AfterEach
     public void tearDown()
     {
+        spiderweb.makeInvisible();
     }
     
     @Test
@@ -64,7 +65,6 @@ public class spiderwebCC4AceptationTest
         assertEquals(1,spiderweb.getStrandSpider());
         int respuesta = JOptionPane.showConfirmDialog(null, "¿Aceptas la prueba?", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
         assertEquals(respuesta,0);
-        spiderweb.makeInvisible();
     }
     
     @Test
@@ -85,7 +85,6 @@ public class spiderwebCC4AceptationTest
         assertEquals(0,spiderweb.getNumberBridges());
         int respuesta = JOptionPane.showConfirmDialog(null, "¿Aceptas la prueba?", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
         assertEquals(respuesta,0);
-        spiderweb.makeInvisible();
     }
 
     @Test
@@ -106,6 +105,5 @@ public class spiderwebCC4AceptationTest
         assertTrue(spiderweb.spiderIsCentered());
         int respuesta = JOptionPane.showConfirmDialog(null, "¿Aceptas la prueba?", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
         assertEquals(respuesta,0);
-        spiderweb.makeInvisible();
     }
 }
