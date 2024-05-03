@@ -90,11 +90,12 @@ public class SpiderWeb{
         }
         for (int[] info : bridges){
             int numberStrand = info[1];
-            int radius = info[0]*10;
+            int radius = info[0];
             String[] colorArray = Arrays.stream(info).mapToObj(String::valueOf).toArray(String[]::new);
             String color = String.join(" ", colorArray);
             addBridge(color, radius, numberStrand);
         }
+        addSpot("blue", favorite);
         ok = true;
         System.out.println(bridgesUsedColors);
     }
@@ -906,7 +907,7 @@ public class SpiderWeb{
         return hasBridge;
     }
     
-    public int[] maximunBridgesInTheStrand(int strand){
+    public int[] maximunBridgesRadiusInTheStrand(int strand){
         ArrayList<Integer> bridgeKeys = new ArrayList<>(strandsBridgesMap.get(strand).keySet());
         Collections.sort(bridgeKeys);
         ArrayList<Integer> maxBridges = new ArrayList<>();

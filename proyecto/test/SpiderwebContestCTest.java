@@ -40,28 +40,29 @@ public class SpiderwebContestCTest{
     }
 
     /**
-     * Tests the simulation of a spider web contest.
+     * Tests the solution of a spider web contest.
      */
     @Test
-    public void shouldSimulateSpiderwebContest(){
+    public void shouldSolveSpiderwebProblem(){
         int strands = 10;
         int favorite = 5;
         int[][] bridges = {
-            {100, 1},
-            {30, 6},
-            {190, 8},
-            {135, 10}
+            {10, 1},
+            {3, 6},
+            {19, 8},
+            {13, 10}
         };
 
         int[] result = contest.solve(strands, favorite, bridges);
         int[] expectedResult = {3, 3, 2, 1, 0, 1, 1, 2, 3, 4};
+        assertArrayEquals(result, expectedResult);
     }
 
     /**
      * Tests the solution of a spider web problem.
      */
     @Test
-    public void shouldSolveSpiderwebProblem(){
+    public void shouldSolveSpiderwebProblem2(){
         int strands = 7;
         int favorite = 6;
         int[][] bridges = {
@@ -74,5 +75,82 @@ public class SpiderwebContestCTest{
 
         int[] result = contest.solve(strands, favorite, bridges);
         int[] expectedResult = {2, 1, 1, 1, 0, 1, 2};
+        assertArrayEquals(result, expectedResult);
     }
+     /**
+     * Tests the solution of a spider web problem.
+     */
+    @Test
+    public void shouldSolveSpiderwebProblem3(){
+        int strands = 4;
+        int favorite = 2;
+        int[][] bridges = {
+            {1, 1},
+            {2, 2},
+            {3, 3},
+            {4, 4}
+        };
+
+        int[] result = contest.solve(strands, favorite, bridges);
+        int[] expectedResult = {1,1,0,1};
+        assertArrayEquals(result, expectedResult);
+    }
+    /**
+     * Tests the simulation of a spider web contest.
+     */
+    @Test
+    public void shouldSimulateSpiderwebProblem(){
+       int strands = 10;
+        int favorite = 5;
+        int[][] bridges = {
+            {10, 1},
+            {3, 6},
+            {19, 8},
+            {13, 10}
+        };
+
+        int[] result = contest.simulate(strands, favorite, bridges, false);
+        int[] expectedResult = {5, 5, 5, 5};
+        assertArrayEquals(result, expectedResult);
+    }
+    
+     /**
+     * Tests the simulation of a spider web problem.
+     */
+    @Test
+    public void shouldSimulateSpiderwebProblem2(){
+        int strands = 7;
+        int favorite = 6;
+        int[][] bridges = {
+            {2, 1},
+            {4, 3},
+            {6, 3},
+            {8, 7},
+            {10, 5}
+        };
+
+        int[] result = contest.simulate(strands, favorite, bridges, false);
+        int[] expectedResult = {6,6,6,6,6,6,6};
+        assertArrayEquals(result, expectedResult);
+    }
+     /**
+     * Tests the simulation of a spider web problem.
+     */
+    @Test
+    public void shouldSimulateSpiderwebProblem3(){
+        int strands = 4;
+        int favorite = 2;
+        int[][] bridges = {
+            {1, 1},
+            {2, 2},
+            {3, 3},
+            {4, 4}
+        };
+
+        int[] result = contest.simulate(strands, favorite, bridges, false);
+        int[] expectedResult = {2,2,2,2};
+        assertArrayEquals(result, expectedResult);
+    }
+    
+    
 }
